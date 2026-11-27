@@ -1,0 +1,30 @@
+barenn.cpp:134:25: warning: unqualified call to 'std::move' [-Wunqualified-std-cast-call]
+  134 |         dados.push_back(move(amostra));
+      |                         ^
+      |                         std::
+1 warning generated.
+==12== Callgrind, a call-graph generating cache profiler
+==12== Copyright (C) 2002-2017, and GNU GPL'd, by Josef Weidendorfer et al.
+==12== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==12== Command: ./barenn_profile
+==12== 
+==12== For interactive control, run 'callgrind_control -h'.
+==12== 
+==12== Events    : Ir Dr Dw I1mr D1mr D1mw ILmr DLmr DLmw
+==12== Collected : 7513457650 2569194719 425739127 1577 483553 14949 1560 4492 14244
+==12== 
+==12== I   refs:      7,513,457,650
+==12== I1  misses:            1,577
+==12== LLi misses:            1,560
+==12== I1  miss rate:          0.00%
+==12== LLi miss rate:          0.00%
+==12== 
+==12== D   refs:      2,994,933,846  (2,569,194,719 rd + 425,739,127 wr)
+==12== D1  misses:          498,502  (      483,553 rd +      14,949 wr)
+==12== LLd misses:           18,736  (        4,492 rd +      14,244 wr)
+==12== D1  miss rate:           0.0% (          0.0%   +         0.0%  )
+==12== LLd miss rate:           0.0% (          0.0%   +         0.0%  )
+==12== 
+==12== LL refs:             500,079  (      485,130 rd +      14,949 wr)
+==12== LL misses:            20,296  (        6,052 rd +      14,244 wr)
+==12== LL miss rate:            0.0% (          0.0%   +         0.0%  )
