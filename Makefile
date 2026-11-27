@@ -1,7 +1,7 @@
 # Barenn — build e medição
 #
-#   make  (ou make barenn)  compila a versão atual (barenn.cpp) com -O2
-#   make baseline           compila o código legado da tag $(BASELINE_REF), mesmas flags
+#   make  (ou make barenn)  compila a versão atual (barenn.cpp) com -O3 e -mcpu/-march=native
+#   make baseline           compila o código legado da tag $(BASELINE_REF) com -O2
 #   make profile            versão atual com -g (símbolos de linha para o callgrind)
 #   make callgrind          roda o callgrind sobre o build de profile (precisa de valgrind/Linux)
 #   make clean
@@ -13,11 +13,19 @@ STD      := -std=c++17
 WARN     := -Wall -Wextra
 SRC      := barenn.cpp
 
-RELEASE_FLAGS := $(STD) $(WARN) -O2
-PROFILE_FLAGS := $(RELEASE_FLAGS) -g
+# -mcpu=native no ARM (Apple M4), -march=native no x86.
+ifneq (,$(filter arm64 aarch64,$(shell uname -m)))
+NATIVE := -mcpu=native
+else
+NATIVE := -march=native
+endif
+
+RELEASE_FLAGS  := $(STD) $(WARN) -O3 $(NATIVE) -fopenmp-simd
+BASELINE_FLAGS := $(STD) $(WARN) -O2
+PROFILE_FLAGS  := $(RELEASE_FLAGS) -g
 
 # O baseline é extraído do histórico do git, então "antes" e "depois" são
-# compilados lado a lado com o mesmo compilador e as mesmas flags.
+# compilados lado a lado com o mesmo compilador.
 BASELINE_REF := v0.0-baseline
 BASELINE_SRC := build/barenn_$(BASELINE_REF).cpp
 
@@ -28,13 +36,13 @@ CALLGRIND_FLAGS ?=
 
 all: barenn
 
-barenn: $(SRC)
+barenn: $(SRC) Makefile
 	$(CXX) $(RELEASE_FLAGS) -o $@ $<
 
 baseline: barenn_baseline
 
-barenn_baseline: $(BASELINE_SRC)
-	$(CXX) $(RELEASE_FLAGS) -o $@ $<
+barenn_baseline: $(BASELINE_SRC) Makefile
+	$(CXX) $(BASELINE_FLAGS) -o $@ $<
 
 $(BASELINE_SRC):
 	mkdir -p build
@@ -42,7 +50,7 @@ $(BASELINE_SRC):
 
 profile: barenn_profile
 
-barenn_profile: $(SRC)
+barenn_profile: $(SRC) Makefile
 	$(CXX) $(PROFILE_FLAGS) -o $@ $<
 
 # Gera $(CALLGRIND_OUT) (dados brutos) e $(CALLGRIND_OUT).txt (custo próprio por
