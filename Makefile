@@ -1,31 +1,44 @@
 # Barenn — build e medição
 #
-#   make baseline        compila o código legado (barenn.cpp intocado) com -O2
-#   make profile         mesmo build com -g (símbolos de linha para o callgrind)
-#   make callgrind       roda o callgrind sobre o build de profile (precisa de valgrind/Linux)
+#   make  (ou make barenn)  compila a versão atual (barenn.cpp) com -O2
+#   make baseline           compila o código legado da tag $(BASELINE_REF), mesmas flags
+#   make profile            versão atual com -g (símbolos de linha para o callgrind)
+#   make callgrind          roda o callgrind sobre o build de profile (precisa de valgrind/Linux)
 #   make clean
 #
-# Compilador: make baseline CXX=clang++   (padrão: g++, que no macOS é o Apple clang)
+# Compilador: make CXX=clang++   (padrão: g++, que no macOS é o Apple clang)
 
 CXX      ?= g++
 STD      := -std=c++17
 WARN     := -Wall -Wextra
 SRC      := barenn.cpp
 
-BASELINE_FLAGS := $(STD) $(WARN) -O2
-PROFILE_FLAGS  := $(BASELINE_FLAGS) -g
+RELEASE_FLAGS := $(STD) $(WARN) -O2
+PROFILE_FLAGS := $(RELEASE_FLAGS) -g
 
-CALLGRIND_OUT   ?= callgrind.out.baseline
+# O baseline é extraído do histórico do git, então "antes" e "depois" são
+# compilados lado a lado com o mesmo compilador e as mesmas flags.
+BASELINE_REF := v0.0-baseline
+BASELINE_SRC := build/barenn_$(BASELINE_REF).cpp
+
+CALLGRIND_OUT   ?= callgrind.out
 CALLGRIND_FLAGS ?=
 
 .PHONY: all baseline profile callgrind clean
 
-all: baseline
+all: barenn
+
+barenn: $(SRC)
+	$(CXX) $(RELEASE_FLAGS) -o $@ $<
 
 baseline: barenn_baseline
 
-barenn_baseline: $(SRC)
-	$(CXX) $(BASELINE_FLAGS) -o $@ $<
+barenn_baseline: $(BASELINE_SRC)
+	$(CXX) $(RELEASE_FLAGS) -o $@ $<
+
+$(BASELINE_SRC):
+	mkdir -p build
+	git show $(BASELINE_REF):barenn.cpp > $@.tmp && mv $@.tmp $@
 
 profile: barenn_profile
 
@@ -40,4 +53,5 @@ callgrind: barenn_profile
 	head -40 $(CALLGRIND_OUT).txt
 
 clean:
-	rm -f barenn_baseline barenn_profile
+	rm -f barenn barenn_baseline barenn_profile
+	rm -rf build
