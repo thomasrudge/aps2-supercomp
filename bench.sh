@@ -2,15 +2,15 @@
 # Roda o binário N vezes e resume o "Tempo de treino" (média, desvio-padrão amostral, mín, máx).
 #
 #   ./bench.sh [binario] [repeticoes]
-#   ./bench.sh                       # = ./bench.sh ./barenn_baseline 5
+#   ./bench.sh                       # = ./bench.sh ./barenn 5
 set -euo pipefail
 export LC_ALL=C
 
-BIN=${1:-./barenn_baseline}
+BIN=${1:-./barenn}
 N=${2:-5}
 
 if [[ ! -x $BIN ]]; then
-    echo "bench: binário '$BIN' não encontrado (rode 'make baseline')" >&2
+    echo "bench: binário '$BIN' não encontrado (rode 'make')" >&2
     exit 1
 fi
 

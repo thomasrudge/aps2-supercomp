@@ -2,7 +2,7 @@
 # Compara a acurácia e a perda média da AVALIACAO FINAL com a referência.
 #
 #   ./validate.sh [binario] [referencia]
-#   ./validate.sh                    # = ./validate.sh ./barenn_baseline referencia.txt
+#   ./validate.sh                    # = ./validate.sh ./barenn referencia.txt
 #
 # Tolerâncias (sobrescreva por variável de ambiente):
 #   TOL_ACC   diferença máxima de acurácia, em pontos percentuais (padrão 0.5)
@@ -13,13 +13,13 @@
 set -euo pipefail
 export LC_ALL=C
 
-BIN=${1:-./barenn_baseline}
+BIN=${1:-./barenn}
 REF=${2:-referencia.txt}
 TOL_ACC=${TOL_ACC:-0.5}
 TOL_PERDA=${TOL_PERDA:-0.002}
 
 if [[ ! -x $BIN ]]; then
-    echo "validate: binário '$BIN' não encontrado (rode 'make baseline')" >&2
+    echo "validate: binário '$BIN' não encontrado (rode 'make')" >&2
     exit 1
 fi
 if [[ ! -r $REF ]]; then
