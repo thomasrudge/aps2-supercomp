@@ -75,13 +75,13 @@ public:
         }
 
         // O gradiente da entrada usa os pesos anteriores à atualização.
+        // Percorre os pesos por linha; cada grad_in[i] soma na mesma ordem de j.
         if (compute_grad_in) {
-            for (int i = 0; i < in_features; ++i) {
-                float sum = 0;
-                for (int j = 0; j < out_features; ++j) {
-                    sum += delta[j] * weights[j * in_features + i];
+            fill(grad_in.begin(), grad_in.end(), 0.0f);
+            for (int j = 0; j < out_features; ++j) {
+                for (int i = 0; i < in_features; ++i) {
+                    grad_in[i] += delta[j] * weights[j * in_features + i];
                 }
-                grad_in[i] = sum;
             }
         }
 
