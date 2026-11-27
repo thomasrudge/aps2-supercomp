@@ -65,7 +65,8 @@ public:
         return out;
     }
 
-    const vector<float>& Backward(const vector<float>& grad_out, float learning_rate) {
+    const vector<float>& Backward(const vector<float>& grad_out, float learning_rate,
+                                  bool compute_grad_in = true) {
         // Delta é o gradiente da perda em relação à soma antes da ativação.
         // Na ReLU, o gradiente passa apenas quando essa soma é positiva.
         for (int i = 0; i < out_features; ++i) {
@@ -74,12 +75,14 @@ public:
         }
 
         // O gradiente da entrada usa os pesos anteriores à atualização.
-        for (int i = 0; i < in_features; ++i) {
-            float sum = 0;
-            for (int j = 0; j < out_features; ++j) {
-                sum += delta[j] * weights[j * in_features + i];
+        if (compute_grad_in) {
+            for (int i = 0; i < in_features; ++i) {
+                float sum = 0;
+                for (int j = 0; j < out_features; ++j) {
+                    sum += delta[j] * weights[j * in_features + i];
+                }
+                grad_in[i] = sum;
             }
-            grad_in[i] = sum;
         }
 
         // SGD por amostra. O gradiente do peso é delta vezes a entrada.
@@ -286,7 +289,8 @@ int main(int argc, char** argv) {
                 // Cada Backward também atualiza os parâmetros da sua camada.
                 const auto& grad3 = l3.Backward(gradiente, taxa);
                 const auto& grad2 = l2.Backward(grad3, taxa);
-                l1.Backward(grad2, taxa);
+                // A primeira camada não precisa do gradiente da entrada.
+                l1.Backward(grad2, taxa, false);
             }
             perdas[epoca] = perda_total / treino.size();
         }
