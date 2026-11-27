@@ -1,0 +1,1121 @@
+--------------------------------------------------------------------------------
+Profile data file '/src/profiling/callgrind.out.baseline' (creator: callgrind-3.22.0)
+--------------------------------------------------------------------------------
+I1 cache: 196608 B, 128 B, 6-way associative
+D1 cache: 131072 B, 128 B, 8-way associative
+LL cache: 16777216 B, 128 B, 16-way associative
+Timerange: Basic block 0 - 1106914113
+Trigger: Program termination
+Profiled target:  ./barenn_profile (PID 12, part 1)
+Events recorded:  Ir Dr Dw I1mr D1mr D1mw ILmr DLmr DLmw
+Events shown:     Ir Dr Dw I1mr D1mr D1mw ILmr DLmr DLmw
+Event sort order: Ir Dr Dw I1mr D1mr D1mw ILmr DLmr DLmw
+Thresholds:       99 0 0 0 0 0 0 0 0
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                     Dr                     Dw                   I1mr           D1mr             D1mw            ILmr           DLmr           DLmw            
+--------------------------------------------------------------------------------
+7,513,457,659 (100.0%) 2,569,194,720 (100.0%) 425,739,129 (100.0%) 1,578 (100.0%) 483,553 (100.0%) 14,949 (100.0%) 1,561 (100.0%) 4,492 (100.0%) 14,244 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                     Dr                     Dw                   I1mr        D1mr             D1mw           ILmr        DLmr         DLmw            file:function
+--------------------------------------------------------------------------------
+4,060,507,685 (54.04%) 1,395,226,786 (54.31%) 184,054,500 (43.23%)  3 ( 0.19%)       0              0           3 ( 0.19%)   .              .           barenn.cpp:Barenn::DenseLayer::Backward(std::vector<float, std::allocator<float> >, float)'2 [/w/barenn_profile]
+1,735,117,845 (23.09%)   307,161,564 (11.96%)  28,138,101 ( 6.61%)  1 ( 0.06%)       0              0           1 ( 0.06%)   .              .           barenn.cpp:Barenn::DenseLayer::Forward(std::vector<float, std::allocator<float> >)'2 [/w/barenn_profile]
+  547,484,179 ( 7.29%)   530,326,560 (20.64%)   1,754,757 ( 0.41%)  1 ( 0.06%)       0              0           1 ( 0.06%)   .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h:Barenn::DenseLayer::Backward(std::vector<float, std::allocator<float> >, float)'2
+  176,795,753 ( 2.35%)    50,103,454 ( 1.95%)  38,277,342 ( 8.99%)  4 ( 0.25%)     716 ( 0.15%)     1 ( 0.01%)  4 ( 0.26%)   .              .           ???:_int_free [/usr/lib/aarch64-linux-gnu/libc.so.6]
+  159,047,530 ( 2.12%)    50,034,915 ( 1.95%)  32,395,410 ( 7.61%)  2 ( 0.13%)      17 ( 0.00%)     1 ( 0.01%)  2 ( 0.13%)   1 ( 0.02%)     .           ./malloc/./malloc/malloc.c:malloc [/usr/lib/aarch64-linux-gnu/libc.so.6]
+   82,898,214 ( 1.10%)    20,665,862 ( 0.80%)  20,631,795 ( 4.85%)  1 ( 0.06%)      21 ( 0.00%)     2 ( 0.01%)  1 ( 0.06%)   .              .           ./malloc/./malloc/malloc.c:free'2 [/usr/lib/aarch64-linux-gnu/libc.so.6]
+   52,300,063 ( 0.70%)    12,876,310 ( 0.50%)   9,570,332 ( 2.25%)  0                1 ( 0.00%)     1 ( 0.01%)  .            .              .           ???:operator new(unsigned long)'2 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   36,546,908 ( 0.49%)    15,707,920 ( 0.61%)   6,243,836 ( 1.47%)  5 ( 0.32%)       7 ( 0.00%)     0           5 ( 0.32%)   1 ( 0.02%)     .           ???:std::istream::sentry::sentry(std::istream&, bool) [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   35,383,748 ( 0.47%)     8,905,734 ( 0.35%)     903,377 ( 0.21%) 15 ( 0.95%)       2 ( 0.00%)     0          15 ( 0.96%)   1 ( 0.02%)     .           ./stdlib/./stdlib/strtod_l.c:____strtof_l_internal'2 [/usr/lib/aarch64-linux-gnu/libc.so.6]
+   33,264,135 ( 0.44%)     7,636,302 ( 0.30%)   1,760,163 ( 0.41%)  1 ( 0.06%)       0              0           1 ( 0.06%)   .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_algobase.h:operator new(unsigned long)'2
+   31,674,510 ( 0.42%)             0           12,509,228 ( 2.94%)  3 ( 0.19%)       0              8 ( 0.05%)  3 ( 0.19%)   0              7 ( 0.05%)  ./string/../sysdeps/aarch64/nptl/../memset.S:__GI_memset [/usr/lib/aarch64-linux-gnu/libc.so.6]
+   31,062,351 ( 0.41%)     8,942,256 ( 0.35%)   4,224,495 ( 0.99%)  9 ( 0.57%)       5 ( 0.00%)     0           9 ( 0.58%)   .              .           ???:0x0000000000145480 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   30,372,746 ( 0.40%)    11,504,312 ( 0.45%)  11,504,312 ( 2.70%)  1 ( 0.06%) 418,038 (86.45%)   632 ( 4.23%)  1 ( 0.06%)   0            627 ( 4.40%)  ./string/../sysdeps/aarch64/multiarch/../memcpy.S:__GI_memmove [/usr/lib/aarch64-linux-gnu/libc.so.6]
+   24,817,920 ( 0.33%)     6,474,240 ( 0.25%)   6,114,560 ( 1.44%)  3 ( 0.19%)       5 ( 0.00%)     1 ( 0.01%)  3 ( 0.19%)   .              .           ./stdlib/./stdlib/strtod_l.c:____strtof_l_internal [/usr/lib/aarch64-linux-gnu/libc.so.6]
+   22,955,319 ( 0.31%)    10,139,950 ( 0.39%)   1,910,767 ( 0.45%)  7 ( 0.44%)       0              0           7 ( 0.45%)   .              .           ???:std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::_M_extract_float(std::istreambuf_iterator<char, std::char_traits<char> >, std::istreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, std::_Ios_Iostate&, std::string&) const'2 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   21,221,130 ( 0.28%)     3,956,482 ( 0.15%)   2,517,764 ( 0.59%)  5 ( 0.32%)       4 ( 0.00%)     0           5 ( 0.32%)   .              .           ???:void std::__convert_to_v<float>(char const*, float&, std::_Ios_Iostate&, __locale_struct* const&) [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   17,679,504 ( 0.24%)     2,946,584 ( 0.11%)           0           0                1 ( 0.00%)     .           .            .              .           ???:operator delete(void*)'2 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   16,904,965 ( 0.22%)     3,956,481 ( 0.15%)   5,035,522 ( 1.18%)  2 ( 0.13%)       3 ( 0.00%)     0           2 ( 0.13%)   .              .           ???:std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::do_get(std::istreambuf_iterator<char, std::char_traits<char> >, std::istreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, std::_Ios_Iostate&, float&) const [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   15,348,018 ( 0.20%)     5,312,763 ( 0.21%)   4,722,477 ( 1.11%)  2 ( 0.13%)       0              0           2 ( 0.13%)   .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/vector.tcc:std::vector<float, std::allocator<float> >::operator=(std::vector<float, std::allocator<float> > const&) [/w/barenn_profile]
+   14,746,890 ( 0.20%)     2,517,762 ( 0.10%)   2,517,764 ( 0.59%)  2 ( 0.13%)       3 ( 0.00%)     0           2 ( 0.13%)   .              .           ???:std::string::reserve(unsigned long) [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   14,746,880 ( 0.20%)     2,517,760 ( 0.10%)   2,158,080 ( 0.51%)  2 ( 0.13%)       0              0           2 ( 0.13%)   .              .           ???:std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   14,704,555 ( 0.20%)    23,527,288 ( 0.92%)           0           1 ( 0.06%)       0              0           1 ( 0.06%)   .              .           ???:_int_free'2 [/usr/lib/aarch64-linux-gnu/libc.so.6]
+   14,038,048 ( 0.19%)     8,188,865 ( 0.32%)           .           .                .              .           .            .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/new_allocator.h:Barenn::DenseLayer::Backward(std::vector<float, std::allocator<float> >, float)'2
+   12,588,805 ( 0.17%)     5,035,521 ( 0.20%)   1,798,402 ( 0.42%)  3 ( 0.19%)       3 ( 0.00%)     0           3 ( 0.19%)   .              .           ???:std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   12,355,791 ( 0.16%)     2,166,290 ( 0.08%)           0           1 ( 0.06%)       0              0           1 ( 0.06%)   .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/new_allocator.h:free'2
+   12,039,912 ( 0.16%)     2,545,454 ( 0.10%)   2,343,288 ( 0.55%)  2 ( 0.13%)  48,707 (10.07%)     0           2 ( 0.13%)   .              .           barenn.cpp:free'2
+   11,869,969 ( 0.16%)     3,237,263 ( 0.13%)   1,438,795 ( 0.34%)  4 ( 0.25%)      15 ( 0.00%)     0           4 ( 0.26%)   .              .           ???:std::locale::facet::_S_get_c_locale() [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   11,869,400 ( 0.16%)     3,596,794 ( 0.14%)   1,798,390 ( 0.42%)  .                .              .           .            .              .           ???:std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char> >(std::basic_istream<char, std::char_traits<char> >&, char&)'2 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   11,846,903 ( 0.16%)     1,804,011 ( 0.07%)           2 ( 0.00%)  1 ( 0.06%)       0              0           1 ( 0.06%)   .              .           barenn.cpp:std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char> >(std::basic_istream<char, std::char_traits<char> >&, char&)'2
+   11,806,200 ( 0.16%)       196,770 ( 0.01%)           0           1 ( 0.06%)       0              0           1 ( 0.06%)   .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h:Barenn::DenseLayer::Forward(std::vector<float, std::allocator<float> >)'2
+   11,786,340 ( 0.16%)             .                    .           .                .              .           .            .              .           ./malloc/./malloc/arena.c:free'2
+   11,593,071 ( 0.15%)       736,068 ( 0.03%)   2,392,221 ( 0.56%)  3 ( 0.19%)       0              0           3 ( 0.19%)   .              .           ./stdlib/./stdlib/strtod_l.c:str_to_mpn.part.0.constprop.0 [/usr/lib/aarch64-linux-gnu/libc.so.6]
+   11,019,327 ( 0.15%)     4,024,914 ( 0.16%)   2,911,676 ( 0.68%)  9 ( 0.57%)      16 ( 0.00%)     2 ( 0.01%)  9 ( 0.58%)   .              .           ???:0x000000000013f840 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+   10,430,720 ( 0.14%)     1,438,720 ( 0.06%)   6,833,920 ( 1.61%)  2 ( 0.13%)       1 ( 0.00%)     0           2 ( 0.13%)   .              .           ???:std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::_M_extract_float(std::istreambuf_iterator<char, std::char_traits<char> >, std::istreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, std::_Ios_Iostate&, std::string&) const [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    9,863,100 ( 0.13%)     3,287,700 ( 0.13%)   1,461,200 ( 0.34%)  2 ( 0.13%)       0              0           2 ( 0.13%)   .              .           ???:0x000000000013b720 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    9,748,634 ( 0.13%)       584,918 ( 0.02%)     584,918 ( 0.14%)  2 ( 0.13%)       0              0           2 ( 0.13%)   .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_algobase.h:main'2
+    9,737,334 ( 0.13%)     4,327,704 ( 0.17%)   1,622,889 ( 0.38%)  1 ( 0.06%)       0              0           1 ( 0.06%)   .              .           ???:0x0000000000112280 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    9,444,948 ( 0.13%)     4,132,167 ( 0.16%)           .           .                .              .           .            .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h:std::vector<float, std::allocator<float> >::operator=(std::vector<float, std::allocator<float> > const&)
+    7,906,860 ( 0.11%)     3,410,057 ( 0.13%)     368,034 ( 0.09%)  2 ( 0.13%)       3 ( 0.00%)     0           2 ( 0.13%)   1 ( 0.02%)     .           ./stdlib/./stdlib/strtod_l.c:str_to_mpn.part.0.constprop.0'2 [/usr/lib/aarch64-linux-gnu/libc.so.6]
+    7,581,238 ( 0.10%)     3,249,102 ( 0.13%)           .           .                .              .           .            .              .           ???:0x00000000001454b0 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    7,193,560 ( 0.10%)     1,079,034 ( 0.04%)   1,798,390 ( 0.42%)  .                .              .           .            .              .           ???:std::istream& std::istream::_M_extract<float>(float&)'2 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    7,180,800 ( 0.10%)       212,160 ( 0.01%)     201,280 ( 0.05%)  4 ( 0.25%)       0              0           4 ( 0.26%)   .              .           ???:__multf3'2 [/usr/lib/aarch64-linux-gnu/libm.so.6]
+    6,808,629 ( 0.09%)     1,840,170 ( 0.07%)   1,656,153 ( 0.39%)  3 ( 0.19%)       0              0           3 ( 0.19%)   .              .           ./stdlib/./stdlib/strtod_l.c:round_and_return [/usr/lib/aarch64-linux-gnu/libc.so.6]
+    6,524,820 ( 0.09%)     5,074,860 ( 0.20%)     724,980 ( 0.17%)  .                .              .           .            .              .           ???:std::istream::sentry::sentry(std::istream&, bool)'2 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    6,499,531 ( 0.09%)     1,932,293 ( 0.08%)   2,107,956 ( 0.50%)  3 ( 0.19%)       0              0           3 ( 0.19%)   .              .           ???:std::string::push_back(char) [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    6,474,240 ( 0.09%)     5,754,880 ( 0.22%)           .           .                .              .           .            .              .           ???:std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::do_get(std::istreambuf_iterator<char, std::char_traits<char> >, std::istreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, std::_Ios_Iostate&, float&) const'2 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    6,457,504 ( 0.09%)     2,545,455 ( 0.10%)   1,955,118 ( 0.46%)  1 ( 0.06%)       2 ( 0.00%)     0           1 ( 0.06%)   .              .           /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h:free'2
+    5,643,376 ( 0.08%)     1,940,049 ( 0.08%)     882,747 ( 0.21%)  1 ( 0.06%)       1 ( 0.00%)     0           1 ( 0.06%)   .              .           ???:0x0000000000145480'2 [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    5,459,708 ( 0.07%)       584,920 ( 0.02%)          51 ( 0.00%)  1 ( 0.06%)       0             32 ( 0.21%)  1 ( 0.06%)   .              .           barenn.cpp:main'2 [/w/barenn_profile]
+    4,790,856 ( 0.06%)     1,596,968 ( 0.06%)   1,197,678 ( 0.28%)  1 ( 0.06%)      14 ( 0.00%)     0           1 ( 0.06%)   5 ( 0.11%)     .           ???:std::locale::id::_M_id() const [/usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33]
+    4,732,561 ( 0.06%)        12,334 ( 0.00%)   2,966,218 ( 0.70%)  2 ( 0.13%)     927 ( 0.19%) 1,538 (10.29%)  2 ( 0.13%)   0          1,531 (10.75%)  /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h:operator new(unsigned long)'2
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/new_allocator.h
+--------------------------------------------------------------------------------
+Ir                  Dr                 Dw               I1mr       D1mr       D1mw           ILmr       DLmr       DLmw           
+
+-- line 126 ----------------------------------------
+         .                  .                .          .          .              .          .          .              .                 allocate(size_type __n, const void* = static_cast<const void*>(0))
+         .                  .                .          .          .              .          .          .              .                 {
+         .                  .                .          .          .              .          .          .              .           #if __cplusplus >= 201103L
+         .                  .                .          .          .              .          .          .              .           	// _GLIBCXX_RESOLVE_LIB_DEFECTS
+         .                  .                .          .          .              .          .          .              .           	// 3308. std::allocator<void>().allocate(n)
+         .                  .                .          .          .              .          .          .              .           	static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
+         .                  .                .          .          .              .          .          .              .           #endif
+         .                  .                .          .          .              .          .          .              .           
+ 1,173,444 ( 0.02%)         .                .          .          .              .          .          .              .           	if (__builtin_expect(__n > this->_M_max_size(), false))
+         .                  .                .          .          .              .          .          .              .           	  {
+         .                  .                .          .          .              .          .          .              .           	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
+         .                  .                .          .          .              .          .          .              .           	    // 3190. allocator::allocate sometimes returns too little storage
+         .                  .                .          .          .              .          .          .              .           	    if (__n > (std::size_t(-1) / sizeof(_Tp)))
+         .                  .                .          .          .              .          .          .              .           	      std::__throw_bad_array_new_length();
+         .                  .                .          .          .              .          .          .              .           	    std::__throw_bad_alloc();
+         .                  .                .          .          .              .          .          .              .           	  }
+         .                  .                .          .          .              .          .          .              .           
+-- line 142 ----------------------------------------
+-- line 143 ----------------------------------------
+         .                  .                .          .          .              .          .          .              .           #if __cpp_aligned_new
+         .                  .                .          .          .              .          .          .              .           	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
+         .                  .                .          .          .              .          .          .              .           	  {
+         .                  .                .          .          .              .          .          .              .           	    std::align_val_t __al = std::align_val_t(alignof(_Tp));
+         .                  .                .          .          .              .          .          .              .           	    return static_cast<_Tp*>(_GLIBCXX_OPERATOR_NEW(__n * sizeof(_Tp),
+         .                  .                .          .          .              .          .          .              .           							   __al));
+         .                  .                .          .          .              .          .          .              .           	  }
+         .                  .                .          .          .              .          .          .              .           #endif
+17,641,126 ( 0.23%) 2,386,260 ( 0.09%)      10 ( 0.00%) 1 ( 0.06%) 0              0          1 ( 0.06%) .              .           	return static_cast<_Tp*>(_GLIBCXX_OPERATOR_NEW(__n * sizeof(_Tp)));
+       194 ( 0.00%)        66 ( 0.00%)      46 ( 0.00%) 2 ( 0.13%) 0              0          2 ( 0.13%) .              .           => ???:operator new(unsigned long)'2 (2x)
+         .                  .                .          .          .              .          .          .              .                 }
+         .                  .                .          .          .              .          .          .              .           
+         .                  .                .          .          .              .          .          .              .                 // __p is not permitted to be a null pointer.
+         .                  .                .          .          .              .          .          .              .                 void
+         .                  .                .          .          .              .          .          .              .                 deallocate(_Tp* __p, size_type __n __attribute__ ((__unused__)))
+         .                  .                .          .          .              .          .          .              .                 {
+         .                  .                .          .          .              .          .          .              .           #if __cpp_sized_deallocation
+         .                  .                .          .          .              .          .          .              .           # define _GLIBCXX_SIZED_DEALLOC(p, n) (p), (n) * sizeof(_Tp)
+-- line 159 ----------------------------------------
+-- line 164 ----------------------------------------
+         .                  .                .          .          .              .          .          .              .           #if __cpp_aligned_new
+         .                  .                .          .          .              .          .          .              .           	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
+         .                  .                .          .          .              .          .          .              .           	  {
+         .                  .                .          .          .              .          .          .              .           	    _GLIBCXX_OPERATOR_DELETE(_GLIBCXX_SIZED_DEALLOC(__p, __n),
+         .                  .                .          .          .              .          .          .              .           				     std::align_val_t(alignof(_Tp)));
+         .                  .                .          .          .              .          .          .              .           	    return;
+         .                  .                .          .          .              .          .          .              .           	  }
+         .                  .                .          .          .              .          .          .              .           #endif
+15,105,606 ( 0.20%) 8,987,289 ( 0.35%)       0          1 ( 0.06%) 1 ( 0.00%)     0          1 ( 0.06%) .              .           	_GLIBCXX_OPERATOR_DELETE(_GLIBCXX_SIZED_DEALLOC(__p, __n));
+491,459,156 ( 6.54%) 149,836,845 ( 5.83%) 82,129,303 (19.29%) 75 ( 4.75%) 1,423 ( 0.29%) 13,577 (90.82%) 74 ( 4.74%) 76 ( 1.69%) 13,369 (93.86%)  => ???:operator delete(void*)'2 (2x)
+         .                  .                .          .          .              .          .          .              .                 }
+         .                  .                .          .          .              .          .          .              .           
+         .                  .                .          .          .              .          .          .              .           #undef _GLIBCXX_SIZED_DEALLOC
+         .                  .                .          .          .              .          .          .              .           #undef _GLIBCXX_OPERATOR_DELETE
+         .                  .                .          .          .              .          .          .              .           #undef _GLIBCXX_OPERATOR_NEW
+         .                  .                .          .          .              .          .          .              .           
+         .                  .                .          .          .              .          .          .              .           #if __cplusplus <= 201703L
+         .                  .                .          .          .              .          .          .              .                 __attribute__((__always_inline__))
+-- line 180 ----------------------------------------
+-- line 183 ----------------------------------------
+         .                  .                .          .          .              .          .          .              .                 { return _M_max_size(); }
+         .                  .                .          .          .              .          .          .              .           
+         .                  .                .          .          .              .          .          .              .           #if __cplusplus >= 201103L
+         .                  .                .          .          .              .          .          .              .                 template<typename _Up, typename... _Args>
+         .                  .                .          .          .              .          .          .              .           	__attribute__((__always_inline__))
+         .                  .                .          .          .              .          .          .              .           	void
+         .                  .                .          .          .              .          .          .              .           	construct(_Up* __p, _Args&&... __args)
+         .                  .                .          .          .              .          .          .              .           	noexcept(std::is_nothrow_constructible<_Up, _Args...>::value)
+   359,782 ( 0.00%)         6 ( 0.00%) 359,821 ( 0.08%) 1 ( 0.06%) 0          4,988 (33.37%) 1 ( 0.06%) 0          4,913 (34.49%)  	{ ::new((void *)__p) _Up(std::forward<_Args>(__args)...); }
+36,539,121 ( 0.49%) 6,973,920 ( 0.27%) 1,431,627 ( 0.34%) 68 ( 4.31%) 8,776 ( 1.81%)    70 ( 0.47%) 68 ( 4.36%) 6 ( 0.13%)     8 ( 0.06%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/vector.tcc:Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)'2 (2x)
+         .                  .                .          .          .              .          .          .              .           
+         .                  .                .          .          .              .          .          .              .                 template<typename _Up>
+         .                  .                .          .          .              .          .          .              .           	__attribute__((__always_inline__))
+         .                  .                .          .          .              .          .          .              .           	void
+         .                  .                .          .          .              .          .          .              .           	destroy(_Up* __p)
+         .                  .                .          .          .              .          .          .              .           	noexcept(std::is_nothrow_destructible<_Up>::value)
+         .                  .                .          .          .              .          .          .              .           	{ __p->~_Up(); }
+         .                  .                .          .          .              .          .          .              .           #else
+-- line 199 ----------------------------------------
+
+ 1,689,728 ( 0.02%)    21,808 ( 0.00%)       0          1 ( 0.06%) 1 ( 0.00%)     0          1 ( 0.06%) .              .           <counts for unidentified lines in /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/new_allocator.h>
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: barenn.cpp
+--------------------------------------------------------------------------------
+Ir                     Dr                     Dw                   I1mr       D1mr            D1mw        ILmr       DLmr       DLmw 
+
+-- line 29 ----------------------------------------
+            .                      .                    .          .               .           .          .          .          .               vector<vector<float>> weights;
+            .                      .                    .          .               .           .          .          .          .               vector<float> bias;
+            .                      .                    .          .               .           .          .          .          .               // Dados do último forward usados para calcular os gradientes.
+            .                      .                    .          .               .           .          .          .          .               vector<float> last_input;
+            .                      .                    .          .               .           .          .          .          .               vector<float> last_z;
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .           public:
+            .                      .                    .          .               .           .          .          .          .               DenseLayer(int input_size, int output_size, bool is_final = false)
+            6 ( 0.00%)             0                    9 ( 0.00%) 0               0           2 ( 0.01%) .          .          .                   : in_features(input_size), out_features(output_size), final(is_final),
+           42 ( 0.00%)             0                   45 ( 0.00%) 1 ( 0.06%)      0           0          1 ( 0.06%) .          .                     weights(output_size, vector<float>(input_size)), bias(output_size, 0) {
+            .                      .                    .          .               .           .          .          .          .                   // A semente fixa torna a inicialização de cada camada reproduzível.
+            .                      .                    .          .               .           .          .          .          .                   mt19937 gen(1337);
+            .                      .                    .          .               .           .          .          .          .                   uniform_real_distribution<float> distribution(-0.05f, 0.05f);
+          122 ( 0.00%)             .                    .          .               .           .          .          .          .                   for (auto& row : weights) {
+        5,614 ( 0.00%)             .                    .          .               .           .          .          .          .                       for (float& weight : row) {
+  233,771,671 ( 3.11%)     9,186,710 ( 0.36%)   5,681,322 ( 1.33%) 32 ( 2.03%)      0           0          32 ( 2.05%) .          .           => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_iterator.h:Barenn::DenseLayer::DenseLayer(int, int, bool)'2 (58x)
+        2,720 ( 0.00%)             0                2,720 ( 0.00%) .               .           .          .          .          .                           weight = distribution(gen);
+            .                      .                    .          .               .           .          .          .          .                       }
+            .                      .                    .          .               .           .          .          .          .                   }
+           33 ( 0.00%)            45 ( 0.00%)           0          1 ( 0.06%)      0           0          1 ( 0.06%) .          .               }
+            .                      .                    .          .               .           .          .          .          .           
+    4,132,170 ( 0.05%)             0            5,312,790 ( 1.25%) 2 ( 0.13%)      0           0          2 ( 0.13%) .          .               vector<float> Forward(vector<float> input) {
+    1,770,930 ( 0.02%)             .                    .          .               .           .          .          .          .                   last_input = input;
+        7,121 ( 0.00%)         1,310 ( 0.00%)         196 ( 0.00%) 8 ( 0.51%)      0           3 ( 0.02%) 8 ( 0.51%) 0          3 ( 0.02%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/vector.tcc:std::vector<float, std::allocator<float> >::operator=(std::vector<float, std::allocator<float> > const&) (1x)
+    1,180,620 ( 0.02%)       590,310 ( 0.02%)           .          .               .           .          .          .          .                   last_z.resize(out_features);
+            9 ( 0.00%)             3 ( 0.00%)           .          .               .           .          .          .          .                   vector<float> out(out_features);
+        9,506 ( 0.00%)         1,710 ( 0.00%)         217 ( 0.00%) 2 ( 0.13%)      0           2 ( 0.01%) 2 ( 0.13%) 0          2 ( 0.01%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h:Barenn::DenseLayer::Forward(std::vector<float, std::allocator<float> >) (3x)
+            .                      .                    .          .               .           .          .          .          .                   // Cada neurônio soma o viés aos produtos entre entradas e pesos.
+   34,237,980 ( 0.46%)             .                    .          .               .           .          .          .          .                   for (int i = 0; i < out_features; ++i) {
+   11,412,660 ( 0.15%)    11,412,660 ( 0.44%)           .          .               .           .          .          .          .                       float sum = bias[i];
+1,463,575,260 (19.48%)    11,412,660 ( 0.44%)           .          .               .           .          .          .          .                       for (int j = 0; j < in_features; ++j) {
+  133,803,600 ( 1.78%)   267,607,200 (10.42%)           .          .               .           .          .          .          .                           sum += input[j] * weights[i][j];
+            .                      .                    .          .               .           .          .          .          .                       }
+   11,412,660 ( 0.15%)             0           11,412,660 ( 2.68%) .               .           .          .          .          .                       last_z[i] = sum;
+            .                      .                    .          .               .           .          .          .          .                       // As camadas ocultas usam ReLU. A última devolve escores lineares.
+   45,650,640 ( 0.61%)             0           11,412,660 ( 2.68%) .               .           .          .          .          .                       out[i] = final ? sum : max(0.0f, sum);
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .                   return out;
+    3,541,860 ( 0.05%)     5,312,790 ( 0.21%)           .          .               .           .          .          .          .               }
+            .                      .                    .          .               .           .          .          .          .           
+    4,679,352 ( 0.06%)             0            7,019,028 ( 1.65%) 1 ( 0.06%)      0           0          1 ( 0.06%) .          .               vector<float> Backward(vector<float> grad_out, float learning_rate) {
+            .                      .                    .          .               .           .          .          .          .                   // Delta é o gradiente da perda em relação à soma antes da ativação.
+            .                      .                    .          .               .           .          .          .          .                   // Na ReLU, o gradiente passa apenas quando essa soma é positiva.
+      584,919 ( 0.01%)       584,919 ( 0.02%)           .          .               .           .          .          .          .                   vector<float> delta(out_features);
+   33,925,302 ( 0.45%)             .                    .          .               .           .          .          .          .                   for (int i = 0; i < out_features; ++i) {
+   11,308,434 ( 0.15%)             0           11,308,434 ( 2.66%) .               .           .          .          .          .                       delta[i] = final ? grad_out[i]
+   37,434,816 ( 0.50%)     9,358,704 ( 0.36%)           .          .               .           .          .          .          .                                        : grad_out[i] * (last_z[i] > 0.0f ? 1.0f : 0.0f);
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .                   // O gradiente da entrada usa os pesos anteriores à atualização.
+      584,919 ( 0.01%)       584,919 ( 0.02%)           .          .               .           .          .          .          .                   vector<float> grad_in(in_features);
+   65,510,928 ( 0.87%)             .                    .          .               .           .          .          .          .                   for (int i = 0; i < in_features; ++i) {
+            .                      .                    .          .               .           .          .          .          .                       float sum = 0;
+1,104,327,072 (14.70%)             .                    .          .               .           .          .          .          .                       for (int j = 0; j < out_features; ++j) {
+148,092,132,096 (1971.0%) 60,151,510,176 (2341.3%) 8,377,599,864 (1967.8%) 32 ( 2.03%)      0           0          32 ( 2.05%) .          .           => barenn.cpp:Barenn::DenseLayer::Backward(std::vector<float, std::allocator<float> >, float)'2 (21,836,976x)
+1,590,979,680 (21.18%) 1,060,653,120 (41.28%)           .          .               .           .          .          .          .                           sum += delta[j] * weights[j][i];
+            .                      .                    .          .               .           .          .          .          .                       }
+   21,836,976 ( 0.29%)             0           21,836,976 ( 5.13%) .               .           .          .          .          .                       grad_in[i] = sum;
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .                   // SGD por amostra. O gradiente do peso é delta vezes a entrada.
+            .                      .                    .          .               .           .          .          .          .                   // O gradiente do viés é o próprio delta.
+   43,868,925 ( 0.58%)     1,754,757 ( 0.07%)           .          .               .           .          .          .          .                   for (int i = 0; i < out_features; ++i) {
+1,073,716,311 (14.29%)   317,416,044 (12.35%) 143,890,074 (33.80%) 2 ( 0.13%)      0           0          2 ( 0.13%) .          .           => barenn.cpp:Barenn::DenseLayer::Backward(std::vector<float, std::allocator<float> >, float)'2 (584,919x)
+  589,988,298 ( 7.85%)    11,308,434 ( 0.44%)           0          2 ( 0.13%)      0           0          2 ( 0.13%) .          .                       for (int j = 0; j < in_features; ++j) {
+  331,454,100 ( 4.41%)   265,163,280 (10.32%) 132,581,640 (31.14%) .               .           .          .          .          .                           weights[i][j] -= learning_rate * (delta[i] * last_input[j]);
+            .                      .                    .          .               .           .          .          .          .                       }
+   45,233,736 ( 0.60%)    22,616,868 ( 0.88%)  11,308,434 ( 2.66%) .               .           .          .          .          .                       bias[i] -= learning_rate * delta[i];
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .                   return grad_in;
+            .                      .                    .          .               .           .          .          .          .               }
+            .                      .                    .          .               .           .          .          .          .           };
+            .                      .                    .          .               .           .          .          .          .           
+       23,524 ( 0.00%)        11,762 ( 0.00%)      11,762 ( 0.00%) .               .           .          .          .          .           struct Amostra {
+            .                      .                    .          .               .           .          .          .          .               vector<float> imagem;
+            .                      .                    .          .               .           .          .          .          .               int rotulo;
+            .                      .                    .          .               .           .          .          .          .           };
+            .                      .                    .          .               .           .          .          .          .           
+           20 ( 0.00%)             0                   28 ( 0.00%) .               .           .          .          .          .           vector<Amostra> ler_dados(const string& caminho) {
+           21 ( 0.00%)             3 ( 0.00%)           2 ( 0.00%) 1 ( 0.06%)      1 ( 0.00%)  0          1 ( 0.06%) .          .               ifstream arquivo(caminho);
+  334,492,714 ( 4.45%)   101,976,372 ( 3.97%)  55,893,994 (13.13%) 313 (19.84%)  1,404 ( 0.29%) 9,310 (62.28%) 312 (19.99%) 143 ( 3.18%) 9,111 (63.96%)  => ./elf/../sysdeps/aarch64/dl-trampoline.S:_dl_runtime_resolve'2 (1x)
+           14 ( 0.00%)             6 ( 0.00%)           .          .               .           .          .          .          .               if (!arquivo) {
+            .                      .                    .          .               .           .          .          .          .                   throw runtime_error("Não foi possível abrir " + caminho);
+            .                      .                    .          .               .           .          .          .          .               }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .               vector<Amostra> dados;
+            .                      .                    .          .               .           .          .          .          .               string linha;
+            .                      .                    .          .               .           .          .          .          .               size_t numero_linha = 0;
+       33,734 ( 0.00%)        16,866 ( 0.00%)           .          .               .           .          .          .          .               while (getline(arquivo, linha)) {
+            .                      .                    .          .               .           .          .          .          .                   ++numero_linha;
+       44,965 ( 0.00%)         5,621 ( 0.00%)           2 ( 0.00%) .               .           .          .          .          .                   istringstream campos(linha);
+  334,471,901 ( 4.45%)   101,969,529 ( 3.97%)  55,890,953 (13.13%) 210 (13.31%)  1,269 ( 0.26%) 9,294 (62.17%) 209 (13.39%) 101 ( 2.25%) 9,106 (63.93%)  => ./elf/../sysdeps/aarch64/dl-trampoline.S:_dl_runtime_resolve'2 (1x)
+  157,177,764 ( 2.09%)    47,925,578 ( 1.87%)  26,269,607 ( 6.17%) 0             268 ( 0.06%) 4,293 (28.72%) 0          0          4,272 (29.99%)  => ???:std::__cxx11::basic_istringstream<char, std::char_traits<char>, std::allocator<char> >::basic_istringstream(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::_Ios_Openmode) (1x)
+            .                      .                    .          .               .           .          .          .          .                   Amostra amostra{};
+            .                      .                    .          .               .           .          .          .          .                   // Cada atributo deve ser seguido por vírgula, inclusive o último.
+      680,020 ( 0.01%)             .                    .          .               .           .          .          .          .                   for (int i = 0; i < entradas; ++i) {
+            .                      .                    .          .               .           .          .          .          .                       float valor;
+            .                      .                    .          .               .           .          .          .          .                       char separador;
+    5,035,525 ( 0.07%)     1,438,721 ( 0.06%)           2 ( 0.00%) 2 ( 0.13%)      0           0          2 ( 0.13%) .          .                       if (!(campos >> valor >> separador) || separador != ',' ||
+  334,460,038 ( 4.45%)   101,965,581 ( 3.97%)  55,889,178 (13.13%) 134 ( 8.49%)  1,191 ( 0.25%) 9,291 (62.15%) 133 ( 8.52%) 85 ( 1.89%) 9,104 (63.91%)  => ./elf/../sysdeps/aarch64/dl-trampoline.S:_dl_runtime_resolve'2 (1x)
+  157,175,807 ( 2.09%)    47,924,964 ( 1.87%)  26,269,201 ( 6.17%) 0             268 ( 0.06%) 4,293 (28.72%) 0          0          4,272 (29.99%)  => ???:std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char> >(std::basic_istream<char, std::char_traits<char> >&, char&) (1x)
+    7,193,600 ( 0.10%)       359,680 ( 0.01%)           .          .               .           .          .          .          .                           !isfinite(valor) || valor < 0 || valor > 16) {
+            .                      .                    .          .               .           .          .          .          .                           break;
+            .                      .                    .          .               .           .          .          .          .                       }
+            .                      .                    .          .               .           .          .          .          .                       // Converte os valores de [0, 16] para [0, 1].
+      359,680 ( 0.00%)             .                    .          .               .           .          .          .          .                       amostra.imagem.push_back(valor / 16.0f);
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .                   // Depois dos atributos, deve restar apenas o rótulo de 0 a 9.
+       22,480 ( 0.00%)         5,620 ( 0.00%)           0          1 ( 0.06%)      0           0          1 ( 0.06%) .          .                   if (amostra.imagem.size() != entradas ||
+       95,545 ( 0.00%)        22,481 ( 0.00%)           2 ( 0.00%) 1 ( 0.06%)      0           0          1 ( 0.06%) .          .                       !(campos >> amostra.rotulo) ||
+779,730,746,332 (10377.8%) 237,736,000,941 (9253.3%) 130,293,203,234 (30604.0%) 185,684 (11767.0%) 2,486,234 (514.2%) 21,470,154 (143622.7%) 181,862 (11650.4%) 32,225 (717.4%) 21,070,006 (147922.0%)  => ???:std::istream::operator>>(int&)'2 (5,618x)
+  334,371,769 ( 4.45%)   101,938,825 ( 3.97%)  55,874,677 (13.12%) 101 ( 6.40%)  1,175 ( 0.24%) 9,286 (62.12%) 100 ( 6.41%) 79 ( 1.76%) 9,099 (63.88%)  => ./elf/../sysdeps/aarch64/dl-trampoline.S:_dl_runtime_resolve'2 (1x)
+  157,091,343 ( 2.09%)    47,899,315 ( 1.86%)  26,255,193 ( 6.17%) 0             268 ( 0.06%) 4,291 (28.70%) 0          0          4,270 (29.98%)  => ???:std::istream::operator>>(int&) (1x)
+            .                      .                    .          .               .           .          .          .          .                       amostra.rotulo < 0 || amostra.rotulo >= classes ||
+       16,860 ( 0.00%)        11,240 ( 0.00%)           .          .               .           .          .          .          .                       !(campos >> ws).eof()) {
+            .                      .                    .          .               .           .          .          .          .                       throw runtime_error(caminho + ":" + to_string(numero_linha) +
+            .                      .                    .          .               .           .          .          .          .                           " — esperados 64 atributos de 0 a 16 e um rótulo inteiro de 0 a 9");
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .                   dados.push_back(move(amostra));
+            .                      .                    .          .               .           .          .          .          .               }
+           16 ( 0.00%)             6 ( 0.00%)           .          .               .           .          .          .          .               if (arquivo.bad() || dados.empty()) {
+            .                      .                    .          .               .           .          .          .          .                   throw runtime_error("Falha de leitura ou arquivo vazio: " + caminho);
+            .                      .                    .          .               .           .          .          .          .               }
+            .                      .                    .          .               .           .          .          .          .               return dados;
+            .                      .                    .          .               .           .          .          .          .           }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .           // Calcula metade da soma dos erros quadráticos. O alvo vale 1 para a
+            .                      .                    .          .               .           .          .          .          .           // classe correta e 0 para as demais. O erro também é a derivada por escore.
+            .                      .                    .          .               .           .          .          .          .           float perda(const vector<float>& escores, int rotulo,
+            .                      .                    .          .               .           .          .          .          .                       vector<float>* gradiente = nullptr) {
+            .                      .                    .          .               .           .          .          .          .               float total = 0;
+            .                      .                    .          .               .           .          .          .          .               for (int i = 0; i < classes; ++i) {
+    7,852,830 ( 0.10%)     1,971,294 ( 0.08%)       5,391 ( 0.00%) 3 ( 0.19%)      0           0          3 ( 0.19%) .          .                   float erro = escores[i] - (i == rotulo ? 1.0f : 0.0f);
+            .                      .                    .          .               .           .          .          .          .                   total += 0.5f * erro * erro;
+            .                      .                    .          .               .           .          .          .          .                   if (gradiente) {
+    3,119,568 ( 0.04%)       194,973 ( 0.01%)   1,949,730 ( 0.46%) .               .           .          .          .          .                       (*gradiente)[i] = erro;
+684,609,783,630,160 (9111780.7%) 236,126,191,316,935 (9190669.3%) 33,531,440,552,307 (7876053.3%) 41,919,204 (2656476.8%) 47,561,650,380 (9835871.2%) 16,110,126 (107767.2%) 41,724,231 (2672916.8%) 5,264,271 (117192.1%) 1,949,734 (13688.1%)  => ???:operator new(unsigned long)'2 (194,973x)
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .               }
+            .                      .                    .          .               .           .          .          .          .               return total;
+            .                      .                    .          .               .           .          .          .          .           }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .           void avaliar(DenseLayer& l1, DenseLayer& l2, DenseLayer& l3,
+           13 ( 0.00%)             0                   22 ( 0.00%) 2 ( 0.13%)      0           0          2 ( 0.13%) .          .                        const vector<Amostra>& teste) {
+            .                      .                    .          .               .           .          .          .          .               struct Exemplo {
+            .                      .                    .          .               .           .          .          .          .                   size_t linha;
+            .                      .                    .          .               .           .          .          .          .                   int real;
+            .                      .                    .          .               .           .          .          .          .                   int previsto;
+            .                      .                    .          .               .           .          .          .          .                   int segundo;
+            .                      .                    .          .               .           .          .          .          .                   float maior_escore;
+            .                      .                    .          .               .           .          .          .          .                   float segundo_escore;
+            .                      .                    .          .               .           .          .          .          .               };
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .               // Linhas representam a classe esperada e colunas, a classe prevista.
+           24 ( 0.00%)             3 ( 0.00%)           6 ( 0.00%) .               .           .          .          .          .               array<array<size_t, classes>, classes> confusoes{};
+   18,434,492 ( 0.25%)     3,518,472 ( 0.14%)     722,369 ( 0.17%) 45 ( 2.85%)  4,427 ( 0.92%) 36 ( 0.24%) 45 ( 2.88%) 3 ( 0.07%) 5 ( 0.04%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h:Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&) (1x)
+           68 ( 0.00%)             0                   53 ( 0.00%) .               .           .          .          .          .           => ./string/../sysdeps/aarch64/nptl/../memset.S:__GI_memset (1x)
+            .                      .                    .          .               .           .          .          .          .               vector<Exemplo> exemplos;
+            .                      .                    .          .               .           .          .          .          .               size_t acertos = 0;
+            .                      .                    .          .               .           .          .          .          .               size_t exemplos_acerto = 0;
+            .                      .                    .          .               .           .          .          .          .               size_t exemplos_erro = 0;
+            .                      .                    .          .               .           .          .          .          .               double perda_total = 0;
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .               // Só fazemos forward aqui. Os pesos ficam fixos.
+        5,391 ( 0.00%)             .                    .          .               .           .          .          .          .               for (size_t i = 0; i < teste.size(); ++i) {
+            .                      .                    .          .               .           .          .          .          .                   const auto& amostra = teste[i];
+       10,782 ( 0.00%)             .                    .          .               .           .          .          .          .                   auto escores = l3.Forward(l2.Forward(l1.Forward(amostra.imagem)));
+33,168,214,708 (441.5%) 6,335,753,093 (246.6%) 1,306,864,985 (307.0%) 122,214 (7744.9%) 8,239,486 (1703.9%) 122,220 (817.6%) 122,214 (7829.2%) 10,782 (240.0%) 10,806 (75.86%)  => barenn.cpp:Barenn::DenseLayer::Forward(std::vector<float, std::allocator<float> >)'2 (3,594x)
+            .                      .                    .          .               .           .          .          .          .                   // O índice do maior escore indica a classe prevista.
+            .                      .                    .          .               .           .          .          .          .                   int previsto = static_cast<int>(
+            .                      .                    .          .               .           .          .          .          .                       max_element(escores.begin(), escores.end()) - escores.begin());
+        3,594 ( 0.00%)         1,797 ( 0.00%)           0          0             449 ( 0.09%)  .          .          .          .                   bool acertou = previsto == amostra.rotulo;
+        1,797 ( 0.00%)             .                    .          .               .           .          .          .          .                   acertos += acertou;
+        5,391 ( 0.00%)         1,797 ( 0.00%)       1,797 ( 0.00%) .               .           .          .          .          .                   ++confusoes[amostra.rotulo][previsto];
+            .                      .                    .          .               .           .          .          .          .                   perda_total += perda(escores, amostra.rotulo);
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .                   // Guarda até três acertos e três erros para ilustrar a saída.
+            .                      .                    .          .               .           .          .          .          .                   // A acurácia usa todas as imagens, inclusive as não exibidas.
+            .                      .                    .          .               .           .          .          .          .                   size_t& exemplos_tipo = acertou ? exemplos_acerto : exemplos_erro;
+        8,985 ( 0.00%)             0                7,188 ( 0.00%) .               .           .          .          .          .                   if (exemplos_tipo < 3) {
+           38 ( 0.00%)             5 ( 0.00%)           6 ( 0.00%) .               .           .          .          .          .                       int segundo = previsto == 0 ? 1 : 0;
+            6 ( 0.00%)             .                    .          .               .           .          .          .          .                       for (int classe = 0; classe < classes; ++classe) {
+          313 ( 0.00%)            54 ( 0.00%)           0          2 ( 0.13%)      0           0          2 ( 0.13%) .          .                           if (classe != previsto && escores[classe] > escores[segundo]) {
+            .                      .                    .          .               .           .          .          .          .                               segundo = classe;
+            .                      .                    .          .               .           .          .          .          .                           }
+            .                      .                    .          .               .           .          .          .          .                       }
+            6 ( 0.00%)             .                    .          .               .           .          .          .          .                       exemplos.push_back({i + 1, amostra.rotulo, previsto, segundo,
+           12 ( 0.00%)            12 ( 0.00%)           .          .               .           .          .          .          .                                           escores[previsto], escores[segundo]});
+           24 ( 0.00%)             6 ( 0.00%)           .          .               .           .          .          .          .                       ++exemplos_tipo;
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .               }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .               cout << "\nAVALIACAO FINAL\n"
+            4 ( 0.00%)             .                    .          .               .           .          .          .          .                    << "Acuracia " << setprecision(1) << 100.0 * acertos / teste.size()
+            2 ( 0.00%)             .                    .          .               .           .          .          .          .                    << "% | " << acertos << " acertos em " << teste.size() << " imagens\n"
+            2 ( 0.00%)             .                    .          .               .           .          .          .          .                    << "Perda media " << setprecision(4) << perda_total / teste.size() << "\n";
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .               cout << "\nALGUMAS INFERENCIAS\n";
+            .                      .                    .          .               .           .          .          .          .               cout << "Esperado  Previsto\n";
+            .                      .                    .          .               .           .          .          .          .           
+           14 ( 0.00%)             .                    .          .               .           .          .          .          .               for (const auto& exemplo : exemplos) {
+           42 ( 0.00%)            12 ( 0.00%)           0          0               3 ( 0.00%)  .          .          .          .                   cout << right << setw(8) << exemplo.real
+       22,390 ( 0.00%)         6,466 ( 0.00%)       3,794 ( 0.00%) 30 ( 1.90%)     96 ( 0.02%) 12 ( 0.08%) 30 ( 1.92%) 3 ( 0.07%) 2 ( 0.01%)  => ???:std::ostream::operator<<(int)'2 (1x)
+           42 ( 0.00%)            12 ( 0.00%)           .          .               .           .          .          .          .                        << "  " << setw(8) << exemplo.previsto << '\n';
+      102,211 ( 0.00%)        28,874 ( 0.00%)      17,137 ( 0.00%) 150 ( 9.51%)    185 ( 0.04%) 72 ( 0.48%) 150 ( 9.61%) 8 ( 0.18%) 12 ( 0.08%)  => ???:std::ostream::operator<<(int)'2 (6x)
+            .                      .                    .          .               .           .          .          .          .               }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .               struct Confusao {
+            .                      .                    .          .               .           .          .          .          .                   int real;
+            .                      .                    .          .               .           .          .          .          .                   int previsto;
+            .                      .                    .          .               .           .          .          .          .                   size_t ocorrencias;
+            .                      .                    .          .               .           .          .          .          .               };
+            .                      .                    .          .               .           .          .          .          .               vector<Confusao> erros;
+           40 ( 0.00%)             .                    .          .               .           .          .          .          .               for (int real = 0; real < classes; ++real) {
+          300 ( 0.00%)             .                    .          .               .           .          .          .          .                   for (int previsto = 0; previsto < classes; ++previsto) {
+          380 ( 0.00%)            90 ( 0.00%)           .          .               .           .          .          .          .                       if (real != previsto && confusoes[real][previsto] > 0) {
+            .                      .                    .          .               .           .          .          .          .                           erros.push_back({real, previsto, confusoes[real][previsto]});
+            .                      .                    .          .               .           .          .          .          .                       }
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .               }
+            .                      .                    .          .               .           .          .          .          .               // Ordena os pares incorretos do mais frequente para o menos frequente.
+            .                      .                    .          .               .           .          .          .          .               stable_sort(erros.begin(), erros.end(), [](const auto& a, const auto& b) {
+          301 ( 0.00%)           240 ( 0.00%)           0          1 ( 0.06%)      0           0          1 ( 0.06%) .          .                   return a.ocorrencias > b.ocorrencias;
+            .                      .                    .          .               .           .          .          .          .               });
+            .                      .                    .          .               .           .          .          .          .               cout << "\nCONFUSOES MAIS FREQUENTES\n";
+            .                      .                    .          .               .           .          .          .          .           
+            2 ( 0.00%)             .                    .          .               .           .          .          .          .               if (erros.empty()) {
+            .                      .                    .          .               .           .          .          .          .                   cout << "Nenhuma neste conjunto.\n";
+            .                      .                    .          .               .           .          .          .          .               } else {
+            .                      .                    .          .               .           .          .          .          .                   cout << "Esperado  Previsto  Ocorrencias\n";
+            .                      .                    .          .               .           .          .          .          .           
+           13 ( 0.00%)             .                    .          .               .           .          .          .          .                   for (size_t i = 0; i < min<size_t>(3, erros.size()); ++i) {
+        6,611 ( 0.00%)         1,986 ( 0.00%)       1,205 ( 0.00%) 3 ( 0.19%)      2 ( 0.00%)  1 ( 0.01%) 3 ( 0.19%) 0          1 ( 0.01%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/ostream:Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)'2 (1x)
+            .                      .                    .          .               .           .          .          .          .                       const auto& erro = erros[i];
+           21 ( 0.00%)             6 ( 0.00%)           0          1 ( 0.06%)      0           0          1 ( 0.06%) .          .                       cout << right << setw(8) << erro.real
+        6,593 ( 0.00%)         1,980 ( 0.00%)       1,203 ( 0.00%) 2 ( 0.13%)      2 ( 0.00%)  1 ( 0.01%) 2 ( 0.13%) 0          1 ( 0.01%)  => ???:std::ostream::operator<<(int)'2 (1x)
+           24 ( 0.00%)             6 ( 0.00%)           .          .               .           .          .          .          .                           << "  " << setw(8) << erro.previsto
+       11,138 ( 0.00%)         3,376 ( 0.00%)       2,032 ( 0.00%) 4 ( 0.25%)      6 ( 0.00%)  2 ( 0.01%) 4 ( 0.26%) 0          2 ( 0.01%)  => ???:std::ostream::operator<<(int)'2 (3x)
+            6 ( 0.00%)             3 ( 0.00%)           .          .               .           .          .          .          .                           << "  " << setw(11) << erro.ocorrencias << '\n';
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .               }
+           12 ( 0.00%)            20 ( 0.00%)           0          0               2 ( 0.00%)  .          .          .          .           }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .           } // namespace Barenn
+            .                      .                    .          .               .           .          .          .          .           
+           12 ( 0.00%)             0                   20 ( 0.00%) 1 ( 0.06%)      0           0          1 ( 0.06%) .          .           int main(int argc, char** argv) {
+            4 ( 0.00%)             .                    .          .               .           .          .          .          .               if (argc != 1 && argc != 3) {
+            .                      .                    .          .               .           .          .          .          .                   cerr << "Uso: " << argv[0] << " [arquivo_treino arquivo_teste]\n";
+            .                      .                    .          .               .           .          .          .          .                   return 1;
+            .                      .                    .          .               .           .          .          .          .               }
+            2 ( 0.00%)             .                    .          .               .           .          .          .          .               const string arquivo_treino = argc == 3 ? argv[1] : "optdigits.tra";
+            .                      .                    .          .               .           .          .          .          .               const string arquivo_teste = argc == 3 ? argv[2] : "optdigits.tes";
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .               try {
+            .                      .                    .          .               .           .          .          .          .                   const auto treino = Barenn::ler_dados(arquivo_treino);
+            3 ( 0.00%)             .                    .          .               .           .          .          .          .                   const auto teste = Barenn::ler_dados(arquivo_teste);
+7,177,428,947 (95.53%) 2,466,768,959 (96.01%) 369,674,343 (86.83%) 363 (23.00%) 475,927 (98.42%) 4,477 (29.95%) 362 (23.19%) 60 ( 1.34%) 4,329 (30.39%)  => barenn.cpp:Barenn::ler_dados(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'2 (1x)
+           22 ( 0.00%)             2 ( 0.00%)           2 ( 0.00%) .               .           .          .          .          .                   if (filesystem::equivalent(arquivo_treino, arquivo_teste)) {
+7,020,248,963 (93.44%) 2,418,842,759 (94.15%) 343,404,235 (80.66%) 363 (23.00%) 475,646 (98.36%) 184 ( 1.23%) 362 (23.19%) 60 ( 1.34%) 57 ( 0.40%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/fs_path.h:std::filesystem::__cxx11::path::path<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::filesystem::__cxx11::path>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::filesystem::__cxx11::path::format) (1x)
+            .                      .                    .          .               .           .          .          .          .                       throw runtime_error("Use arquivos distintos para treino e teste.");
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .                   constexpr int epocas = 51;
+            .                      .                    .          .               .           .          .          .          .                   constexpr float taxa = 0.02f;
+            .                      .                    .          .               .           .          .          .          .                   // Rede densa com dimensões 64 -> 32 -> 16 -> 10.
+            .                      .                    .          .               .           .          .          .          .                   Barenn::DenseLayer l1(Barenn::entradas, 32);
+            5 ( 0.00%)             .                    .          .               .           .          .          .          .                   Barenn::DenseLayer l2(32, 16);
+7,007,033,000 (93.26%) 2,418,318,485 (94.13%) 343,079,393 (80.58%) 244 (15.46%) 475,469 (98.33%) 137 ( 0.92%) 243 (15.57%) 32 ( 0.71%) 42 ( 0.29%)  => barenn.cpp:Barenn::DenseLayer::DenseLayer(int, int, bool)'2 (1x)
+            5 ( 0.00%)             0                    0          1 ( 0.06%)      0           0          1 ( 0.06%) .          .                   Barenn::DenseLayer l3(16, Barenn::classes, true);
+7,003,725,686 (93.22%) 2,418,187,620 (94.12%) 342,997,762 (80.57%) 243 (15.40%) 475,459 (98.33%) 118 ( 0.79%) 242 (15.50%) 32 ( 0.71%) 25 ( 0.18%)  => barenn.cpp:Barenn::DenseLayer::DenseLayer(int, int, bool)'2 (1x)
+            .                      .                    .          .               .           .          .          .          .                   vector<float> gradiente(Barenn::classes);
+           14 ( 0.00%)             0                   26 ( 0.00%) 0               0           2 ( 0.01%) .          .          .                   array<double, epocas> perdas{};
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .                   // A medição inclui forward, perda e backward de todas as épocas.
+           10 ( 0.00%)             2 ( 0.00%)           2 ( 0.00%) .               .           .          .          .          .                   const auto inicio = chrono::steady_clock::now();
+7,002,683,574 (93.20%) 2,418,145,919 (94.12%) 342,971,310 (80.56%) 243 (15.40%) 475,456 (98.33%) 108 ( 0.72%) 242 (15.50%) 32 ( 0.71%) 19 ( 0.13%)  => ./elf/../sysdeps/aarch64/dl-trampoline.S:_dl_runtime_resolve'2 (1x)
+          153 ( 0.00%)             .                    .          .               .           .          .          .          .                   for (int epoca = 0; epoca < epocas; ++epoca) {
+            .                      .                    .          .               .           .          .          .          .                       double perda_total = 0;
+            .                      .                    .          .               .           .          .          .          .                       // Uma época percorre todo o conjunto na ordem do arquivo.
+      390,048 ( 0.01%)             .                    .          .               .           .          .          .          .                       for (const auto& amostra : treino) {
+    1,559,784 ( 0.02%)             .                    .          .               .           .          .          .          .                           auto escores = l3.Forward(l2.Forward(l1.Forward(amostra.imagem)));
+7,002,674,706 (93.20%) 2,418,144,031 (94.12%) 342,970,857 (80.56%) 226 (14.32%) 475,429 (98.32%) 104 ( 0.70%) 225 (14.41%) 27 ( 0.60%) 16 ( 0.11%)  => barenn.cpp:Barenn::DenseLayer::Forward(std::vector<float, std::allocator<float> >)'2 (1x)
+      194,973 ( 0.00%)       194,973 ( 0.01%)           0          0          48,705 (10.07%)  .          .          .          .                           perda_total += Barenn::perda(escores, amostra.rotulo, &gradiente);
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .                           // Propaga o gradiente da última camada até a primeira.
+            .                      .                    .          .               .           .          .          .          .                           // Cada Backward também atualiza os parâmetros da sua camada.
+      779,892 ( 0.01%)             0                    0          1 ( 0.06%)      0           0          1 ( 0.06%) .          .                           auto grad3 = l3.Backward(gradiente, taxa);
+684,602,764,777,068 (9111687.3%) 236,123,768,494,474 (9190575.0%) 33,531,093,682,387 (7875971.8%) 41,918,980 (2656462.6%) 47,561,174,954 (9835772.9%) 16,110,024 (107766.6%) 41,724,008 (2672902.5%) 5,264,244 (117191.5%) 1,949,720 (13688.0%)  => barenn.cpp:Barenn::DenseLayer::Backward(std::vector<float, std::allocator<float> >, float)'2 (194,972x)
+7,002,670,160 (93.20%) 2,418,143,074 (94.12%) 342,970,443 (80.56%) 223 (14.13%) 475,426 (98.32%) 101 ( 0.68%) 222 (14.22%) 27 ( 0.60%) 13 ( 0.09%)  => barenn.cpp:Barenn::DenseLayer::Backward(std::vector<float, std::allocator<float> >, float) (1x)
+            .                      .                    .          .               .           .          .          .          .                           auto grad2 = l2.Backward(grad3, taxa);
+            .                      .                    .          .               .           .          .          .          .                           l1.Backward(grad2, taxa);
+            .                      .                    .          .               .           .          .          .          .                       }
+          153 ( 0.00%)             0                   51 ( 0.00%) 0               0          32 ( 0.21%) .          .          .                       perdas[epoca] = perda_total / treino.size();
+            .                      .                    .          .               .           .          .          .          .                   }
+            6 ( 0.00%)             1 ( 0.00%)           0          1 ( 0.06%)      0           0          1 ( 0.06%) .          .                   const chrono::duration<double> tempo = chrono::steady_clock::now() - inicio;
+   19,915,858 ( 0.27%)     3,989,032 ( 0.16%)     988,075 ( 0.23%) 214 (13.56%) 12,451 ( 2.57%) 66 ( 0.44%) 213 (13.65%) 27 ( 0.60%) 10 ( 0.07%)  => ???:std::chrono::_V2::steady_clock::now()'2 (1x)
+            .                      .                    .          .               .           .          .          .          .           
+            .                      .                    .          .               .           .          .          .          .                   // Imprime as métricas e roda a avaliação após encerrar o cronômetro.
+            .                      .                    .          .               .           .          .          .          .                   cout << fixed << setprecision(4)
+            .                      .                    .          .               .           .          .          .          .                        << "TREINO | " << treino.size() << " imagens\n";
+           33 ( 0.00%)             .                    .          .               .           .          .          .          .                   for (int epoca = 0; epoca < epocas; epoca += 5) {
+          170 ( 0.00%)            23 ( 0.00%)           2 ( 0.00%) 1 ( 0.06%)      1 ( 0.00%)  0          1 ( 0.06%) .          .                       cout << "Epoca " << setw(2) << epoca + 1 << "/" << epocas
+  417,558,283 ( 5.56%)    83,570,577 ( 3.25%)  20,637,879 ( 4.85%) 1,594 (101.0%) 256,554 (53.06%) 893 ( 5.97%) 1,594 (102.1%) 100 ( 2.23%) 145 ( 1.02%)  => ???:std::ostream::operator<<(int)'2 (21x)
+   19,910,341 ( 0.26%)     3,987,239 ( 0.16%)     987,268 ( 0.23%) 178 (11.28%) 12,314 ( 2.55%) 57 ( 0.38%) 177 (11.34%) 21 ( 0.47%) 8 ( 0.06%)  => ./elf/../sysdeps/aarch64/dl-trampoline.S:_dl_runtime_resolve'2 (1x)
+           11 ( 0.00%)            11 ( 0.00%)           0          0               2 ( 0.00%)  .          .          .          .                            << " | perda media " << perdas[epoca] << "\n";
+            .                      .                    .          .               .           .          .          .          .                   }
+            .                      .                    .          .               .           .          .          .          .                   cout << "Tempo de treino " << tempo.count() << " s\n";
+            5 ( 0.00%)             0                    0          1 ( 0.06%)      0           0          1 ( 0.06%) .          .                   Barenn::avaliar(l1, l2, l3, teste);
+   19,858,792 ( 0.26%)     3,972,717 ( 0.15%)     978,285 ( 0.23%) 59 ( 3.74%) 12,212 ( 2.53%) 39 ( 0.26%) 59 ( 3.78%) 3 ( 0.07%) 5 ( 0.04%)  => barenn.cpp:Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&) (1x)
+            .                      .                    .          .               .           .          .          .          .               } catch (const exception& erro) {
+            .                      .                    .          .               .           .          .          .          .                   cerr << "Erro: " << erro.what() << "\n";
+            .                      .                    .          .               .           .          .          .          .                   return 1;
+            .                      .                    .          .               .           .          .          .          .               }
+           13 ( 0.00%)            20 ( 0.00%)           0          1 ( 0.06%)      2 ( 0.00%)  0          1 ( 0.06%) .          .           }
+
+  209,515,472 ( 2.79%)    35,774,950 ( 1.39%)     400,754 ( 0.09%) 2 ( 0.13%)      1 ( 0.00%)  1 ( 0.01%) 2 ( 0.13%) 1 ( 0.02%) .           <counts for unidentified lines in barenn.cpp>
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_algobase.h
+--------------------------------------------------------------------------------
+Ir                  Dr                 Dw                 I1mr       D1mr       D1mw       ILmr       DLmr       DLmw       
+
+-- line 415 ----------------------------------------
+         .                  .                  .          .          .          .          .          .          .           	      ++__result;
+         .                  .                  .          .          .          .          .          .          .           	    }
+         .                  .                  .          .          .          .          .          .          .           	  return __result;
+         .                  .                  .          .          .          .          .          .          .           	}
+         .                  .                  .          .          .          .          .          .          .           
+         .                  .                  .          .          .          .          .          .          .                 template<typename _Tp, typename _Up>
+         .                  .                  .          .          .          .          .          .          .           	static void
+         .                  .                  .          .          .          .          .          .          .           	__assign_one(_Tp* __to, _Up* __from)
+        12 ( 0.00%)         4 ( 0.00%)         4 ( 0.00%) .          .          .          .          .          .           	{ *__to = std::move(*__from); }
+       816 ( 0.00%)       217 ( 0.00%)        86 ( 0.00%) .          .          .          .          .          .           => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_algo.h:void std::__merge_sort_with_buffer<__gnu_cxx::__normal_iterator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, std::vector<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao, std::allocator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao> > >, Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, __gnu_cxx::__ops::_Iter_comp_iter<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::$_0> >(__gnu_cxx::__normal_iterator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, std::vector<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao, std::allocator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao> > >, __gnu_cxx::__normal_iterator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, std::vector<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao, std::allocator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao> > >, Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, __gnu_cxx::__ops::_Iter_comp_iter<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::$_0>)'2 (1x)
+         .                  .                  .          .          .          .          .          .          .               };
+         .                  .                  .          .          .          .          .          .          .           #endif
+         .                  .                  .          .          .          .          .          .          .           
+         .                  .                  .          .          .          .          .          .          .             template<bool _IsMove>
+         .                  .                  .          .          .          .          .          .          .               struct __copy_move<_IsMove, true, random_access_iterator_tag>
+         .                  .                  .          .          .          .          .          .          .               {
+         .                  .                  .          .          .          .          .          .          .                 template<typename _Tp, typename _Up>
+         .                  .                  .          .          .          .          .          .          .           	_GLIBCXX20_CONSTEXPR
+         .                  .                  .          .          .          .          .          .          .           	static _Up*
+         .                  .                  .          .          .          .          .          .          .           	__copy_m(_Tp* __first, _Tp* __last, _Up* __result)
+         .                  .                  .          .          .          .          .          .          .           	{
+   196,839 ( 0.00%)         .                  .          .          .          .          .          .          .           	  const ptrdiff_t _Num = __last - __first;
+ 2,354,190 ( 0.03%)         .                  .          .          .          .          .          .          .           	  if (__builtin_expect(_Num > 1, true))
+11,154,783 ( 0.15%) 1,173,663 ( 0.05%) 1,171,873 ( 0.28%) 7 ( 0.44%) 0          3 ( 0.02%) 7 ( 0.45%) 0          3 ( 0.02%)  	    __builtin_memmove(__result, __first, sizeof(_Tp) * _Num);
+7,002,681,842 (93.20%) 2,418,145,341 (94.12%) 342,971,062 (80.56%) 236 (14.96%) 475,429 (98.32%) 107 ( 0.72%) 235 (15.05%) 27 ( 0.60%) 19 ( 0.13%)  => /w/barenn.cpp:Barenn::DenseLayer::Forward(std::vector<float, std::allocator<float> >) (1x)
+        42 ( 0.00%)        17 ( 0.00%)        17 ( 0.00%) 0          2 ( 0.00%) .          .          .          .           => ./string/../sysdeps/aarch64/multiarch/../memcpy.S:__GI_memmove (1x)
+        10 ( 0.00%)         0                  0          2 ( 0.13%) 0          0          2 ( 0.13%) .          .           	  else if (_Num == 1)
+         .                  .                  .          .          .          .          .          .          .           	    std::__copy_move<_IsMove, false, random_access_iterator_tag>::
+         .                  .                  .          .          .          .          .          .          .           	      __assign_one(__result, __first);
+         1 ( 0.00%)         .                  .          .          .          .          .          .          .           	  return __result + _Num;
+         .                  .                  .          .          .          .          .          .          .           	}
+         .                  .                  .          .          .          .          .          .          .               };
+         .                  .                  .          .          .          .          .          .          .           
+         .                  .                  .          .          .          .          .          .          .           _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+         .                  .                  .          .          .          .          .          .          .           
+         .                  .                  .          .          .          .          .          .          .             template<typename _Tp, typename _Ref, typename _Ptr>
+         .                  .                  .          .          .          .          .          .          .               struct _Deque_iterator;
+         .                  .                  .          .          .          .          .          .          .           
+-- line 449 ----------------------------------------
+-- line 738 ----------------------------------------
+         .                  .                  .          .          .          .          .          .          .             template<bool _IsMove>
+         .                  .                  .          .          .          .          .          .          .               struct __copy_move_backward<_IsMove, true, random_access_iterator_tag>
+         .                  .                  .          .          .          .          .          .          .               {
+         .                  .                  .          .          .          .          .          .          .                 template<typename _Tp, typename _Up>
+         .                  .                  .          .          .          .          .          .          .           	_GLIBCXX20_CONSTEXPR
+         .                  .                  .          .          .          .          .          .          .           	static _Up*
+         .                  .                  .          .          .          .          .          .          .           	__copy_move_b(_Tp* __first, _Tp* __last, _Up* __result)
+         .                  .                  .          .          .          .          .          .          .           	{
+        18 ( 0.00%)         0                  0          1 ( 0.06%) 0          0          1 ( 0.06%) .          .           	  const ptrdiff_t _Num = __last - __first;
+        16 ( 0.00%)         .                  .          .          .          .          .          .          .           	  if (__builtin_expect(_Num > 1, true))
+        44 ( 0.00%)         8 ( 0.00%)         4 ( 0.00%) .          .          .          .          .          .           	    __builtin_memmove(__result - _Num, __first, sizeof(_Tp) * _Num);
+       639 ( 0.00%)       180 ( 0.00%)        67 ( 0.00%) 9 ( 0.57%) 0          2 ( 0.01%) 9 ( 0.58%) .          .           => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_algo.h:void std::__merge_sort_with_buffer<__gnu_cxx::__normal_iterator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, std::vector<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao, std::allocator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao> > >, Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, __gnu_cxx::__ops::_Iter_comp_iter<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::$_0> >(__gnu_cxx::__normal_iterator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, std::vector<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao, std::allocator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao> > >, __gnu_cxx::__normal_iterator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, std::vector<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao, std::allocator<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao> > >, Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::Confusao*, __gnu_cxx::__ops::_Iter_comp_iter<Barenn::avaliar(Barenn::DenseLayer&, Barenn::DenseLayer&, Barenn::DenseLayer&, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > const&)::$_0>)'2 (1x)
+        18 ( 0.00%)         6 ( 0.00%)         6 ( 0.00%) .          .          .          .          .          .           => ./string/../sysdeps/aarch64/multiarch/../memcpy.S:__GI_memmove (1x)
+         6 ( 0.00%)         .                  .          .          .          .          .          .          .           	  else if (_Num == 1)
+         .                  .                  .          .          .          .          .          .          .           	    std::__copy_move<_IsMove, false, random_access_iterator_tag>::
+         .                  .                  .          .          .          .          .          .          .           	      __assign_one(__result - 1, __first);
+         .                  .                  .          .          .          .          .          .          .           	  return __result - _Num;
+         .                  .                  .          .          .          .          .          .          .           	}
+         .                  .                  .          .          .          .          .          .          .               };
+         .                  .                  .          .          .          .          .          .          .           
+         .                  .                  .          .          .          .          .          .          .             template<bool _IsMove, typename _BI1, typename _BI2>
+         .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+-- line 757 ----------------------------------------
+-- line 922 ----------------------------------------
+         .                  .                  .          .          .          .          .          .          .             template<typename _ForwardIterator, typename _Tp>
+         .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+         .                  .                  .          .          .          .          .          .          .               inline typename
+         .                  .                  .          .          .          .          .          .          .               __gnu_cxx::__enable_if<__is_scalar<_Tp>::__value, void>::__type
+         .                  .                  .          .          .          .          .          .          .               __fill_a1(_ForwardIterator __first, _ForwardIterator __last,
+         .                  .                  .          .          .          .          .          .          .           	      const _Tp& __value)
+         .                  .                  .          .          .          .          .          .          .               {
+         .                  .                  .          .          .          .          .          .          .                 const _Tp __tmp = __value;
+ 1,760,157 ( 0.02%)         .                  .          .          .          .          .          .          .                 for (; __first != __last; ++__first)
+27,008,801 ( 0.36%) 7,051,384 ( 0.27%) 1,175,243 ( 0.28%) 1 ( 0.06%) 0          1 ( 0.01%) 1 ( 0.06%) .          .           	*__first = __tmp;
+17,557,387 ( 0.23%)   694,433 ( 0.03%)   431,591 ( 0.10%) 92 ( 5.83%) 55 ( 0.01%) 59 ( 0.39%) 92 ( 5.89%) 18 ( 0.40%) 38 ( 0.27%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h:Barenn::DenseLayer::DenseLayer(int, int, bool) (3x)
+       778 ( 0.00%)       263 ( 0.00%)       128 ( 0.00%) 0          13 ( 0.00%) 5 ( 0.03%) .          .          .           => ./elf/../sysdeps/aarch64/dl-trampoline.S:_dl_runtime_resolve'2 (1x)
+        35 ( 0.00%)         0                 13 ( 0.00%) 0          0          1 ( 0.01%) .          .          .           => ./string/../sysdeps/aarch64/nptl/../memset.S:__GI_memset (2x)
+         .                  .                  .          .          .          .          .          .          .               }
+         .                  .                  .          .          .          .          .          .          .           
+         .                  .                  .          .          .          .          .          .          .             // Specialization: for char types we can use memset.
+         .                  .                  .          .          .          .          .          .          .             template<typename _Tp>
+         .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+         .                  .                  .          .          .          .          .          .          .               inline typename
+         .                  .                  .          .          .          .          .          .          .               __gnu_cxx::__enable_if<__is_byte<_Tp>::__value, void>::__type
+         .                  .                  .          .          .          .          .          .          .               __fill_a1(_Tp* __first, _Tp* __last, const _Tp& __c)
+-- line 939 ----------------------------------------
+-- line 1115 ----------------------------------------
+         .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+         .                  .                  .          .          .          .          .          .          .               inline _OutputIterator
+         .                  .                  .          .          .          .          .          .          .               __fill_n_a(_OutputIterator __first, _Size __n, const _Tp& __value,
+         .                  .                  .          .          .          .          .          .          .           	       std::random_access_iterator_tag)
+         .                  .                  .          .          .          .          .          .          .               {
+         .                  .                  .          .          .          .          .          .          .           #if __cplusplus >= 201103L
+         .                  .                  .          .          .          .          .          .          .                 static_assert(is_integral<_Size>{}, "fill_n must pass integral size");
+         .                  .                  .          .          .          .          .          .          .           #endif
+ 3,520,308 ( 0.05%)         .                  .          .          .          .          .          .          .                 if (__n <= 0)
+         .                  .                  .          .          .          .          .          .          .           	return __first;
+         .                  .                  .          .          .          .          .          .          .           
+         .                  .                  .          .          .          .          .          .          .                 __glibcxx_requires_can_increment(__first, __n);
+         .                  .                  .          .          .          .          .          .          .           
+         .                  .                  .          .          .          .          .          .          .                 std::__fill_a(__first, __first + __n, __value);
+         .                  .                  .          .          .          .          .          .          .                 return __first + __n;
+         .                  .                  .          .          .          .          .          .          .               }
+         .                  .                  .          .          .          .          .          .          .           
+-- line 1131 ----------------------------------------
+
+         6 ( 0.00%)         5 ( 0.00%)         .          .          .          .          .          .          .           <counts for unidentified lines in /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_algobase.h>
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/vector.tcc
+--------------------------------------------------------------------------------
+Ir                 Dr                 Dw                 I1mr       D1mr       D1mw       ILmr       DLmr DLmw 
+
+-- line 106 ----------------------------------------
+        .                  .                  .          .          .          .          .          .          .                 _GLIBCXX20_CONSTEXPR
+        .                  .                  .          .          .          .          .          .          .                 typename vector<_Tp, _Alloc>::reference
+        .                  .                  .          .          .          .          .          .          .           #else
+        .                  .                  .          .          .          .          .          .          .                 void
+        .                  .                  .          .          .          .          .          .          .           #endif
+        .                  .                  .          .          .          .          .          .          .                 vector<_Tp, _Alloc>::
+        .                  .                  .          .          .          .          .          .          .                 emplace_back(_Args&&... __args)
+        .                  .                  .          .          .          .          .          .          .                 {
+1,095,982 ( 0.01%)   730,600 ( 0.03%)         .          .          .          .          .          .          .           	if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+        .                  .                  .          .          .          .          .          .          .           	  {
+        .                  .                  .          .          .          .          .          .          .           	    _GLIBCXX_ASAN_ANNOTATE_GROW(1);
+        .                  .                  .          .          .          .          .          .          .           	    _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
+        .                  .                  .          .          .          .          .          .          .           				     std::forward<_Args>(__args)...);
+  331,558 ( 0.00%)         0            325,935 ( 0.08%) .          .          .          .          .          .           	    ++this->_M_impl._M_finish;
+        .                  .                  .          .          .          .          .          .          .           	    _GLIBCXX_ASAN_ANNOTATE_GREW(1);
+        .                  .                  .          .          .          .          .          .          .           	  }
+        .                  .                  .          .          .          .          .          .          .           	else
+       75 ( 0.00%)         .                  .          .          .          .          .          .          .           	  _M_realloc_insert(end(), std::forward<_Args>(__args)...);
+491,459,446 ( 6.54%) 149,836,933 ( 5.83%) 82,129,373 (19.29%) 79 ( 5.01%) 1,423 ( 0.29%) 13,577 (90.82%) 78 ( 5.00%) 76 ( 1.69%) 13,369 (93.86%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/vector.tcc:void std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> >::_M_realloc_insert<Barenn::Amostra>(__gnu_cxx::__normal_iterator<Barenn::Amostra*, std::vector<Barenn::Amostra, std::allocator<Barenn::Amostra> > >, Barenn::Amostra&&) (2x)
+        .                  .                  .          .          .          .          .          .          .           #if __cplusplus > 201402L
+        .                  .                  .          .          .          .          .          .          .           	return back();
+        .                  .                  .          .          .          .          .          .          .           #endif
+        .                  .                  .          .          .          .          .          .          .                 }
+        .                  .                  .          .          .          .          .          .          .           #endif
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .             template<typename _Tp, typename _Alloc>
+        .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+-- line 131 ----------------------------------------
+-- line 204 ----------------------------------------
+        .                  .                  .          .          .          .          .          .          .                 return __first;
+        .                  .                  .          .          .          .          .          .          .               }
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .             template<typename _Tp, typename _Alloc>
+        .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+        .                  .                  .          .          .          .          .          .          .               vector<_Tp, _Alloc>&
+        .                  .                  .          .          .          .          .          .          .               vector<_Tp, _Alloc>::
+        .                  .                  .          .          .          .          .          .          .               operator=(const vector<_Tp, _Alloc>& __x)
+3,541,860 ( 0.05%)         0          4,132,170 ( 0.97%) 2 ( 0.13%) 0          0          2 ( 0.13%) .          .               {
+1,180,620 ( 0.02%)         .                  .          .          .          .          .          .          .                 if (std::__addressof(__x) != this)
+        .                  .                  .          .          .          .          .          .          .           	{
+        .                  .                  .          .          .          .          .          .          .           	  _GLIBCXX_ASAN_ANNOTATE_REINIT;
+        .                  .                  .          .          .          .          .          .          .           #if __cplusplus >= 201103L
+        .                  .                  .          .          .          .          .          .          .           	  if (_Alloc_traits::_S_propagate_on_copy_assign())
+        .                  .                  .          .          .          .          .          .          .           	    {
+        .                  .                  .          .          .          .          .          .          .           	      if (!_Alloc_traits::_S_always_equal()
+        .                  .                  .          .          .          .          .          .          .           	          && _M_get_Tp_allocator() != __x._M_get_Tp_allocator())
+        .                  .                  .          .          .          .          .          .          .           	        {
+-- line 221 ----------------------------------------
+-- line 228 ----------------------------------------
+        .                  .                  .          .          .          .          .          .          .           		  this->_M_impl._M_finish = nullptr;
+        .                  .                  .          .          .          .          .          .          .           		  this->_M_impl._M_end_of_storage = nullptr;
+        .                  .                  .          .          .          .          .          .          .           		}
+        .                  .                  .          .          .          .          .          .          .           	      std::__alloc_on_copy(_M_get_Tp_allocator(),
+        .                  .                  .          .          .          .          .          .          .           				   __x._M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .           	    }
+        .                  .                  .          .          .          .          .          .          .           #endif
+        .                  .                  .          .          .          .          .          .          .           	  const size_type __xlen = __x.size();
+1,180,620 ( 0.02%)         .                  .          .          .          .          .          .          .           	  if (__xlen > capacity())
+        .                  .                  .          .          .          .          .          .          .           	    {
+        .                  .                  .          .          .          .          .          .          .           	      pointer __tmp = _M_allocate_and_copy(__xlen, __x.begin(),
+        .                  .                  .          .          .          .          .          .          .           						   __x.end());
+        .                  .                  .          .          .          .          .          .          .           	      std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+        .                  .                  .          .          .          .          .          .          .           			    _M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .           	      _M_deallocate(this->_M_impl._M_start,
+        .                  .                  .          .          .          .          .          .          .           			    this->_M_impl._M_end_of_storage
+        .                  .                  .          .          .          .          .          .          .           			    - this->_M_impl._M_start);
+        .                  .                  .          .          .          .          .          .          .           	      this->_M_impl._M_start = __tmp;
+        .                  .                  .          .          .          .          .          .          .           	      this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __xlen;
+        .                  .                  .          .          .          .          .          .          .           	    }
+1,180,614 ( 0.02%)         .                  .          .          .          .          .          .          .           	  else if (size() >= __xlen)
+        .                  .                  .          .          .          .          .          .          .           	    {
+        .                  .                  .          .          .          .          .          .          .           	      std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+        .                  .                  .          .          .          .          .          .          .           			    end(), _M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .           	    }
+        .                  .                  .          .          .          .          .          .          .           	  else
+        .                  .                  .          .          .          .          .          .          .           	    {
+        .                  .                  .          .          .          .          .          .          .           	      std::copy(__x._M_impl._M_start, __x._M_impl._M_start + size(),
+        .                  .                  .          .          .          .          .          .          .           			this->_M_impl._M_start);
+        .                  .                  .          .          .          .          .          .          .           	      std::__uninitialized_copy_a(__x._M_impl._M_start + size(),
+        .                  .                  .          .          .          .          .          .          .           					  __x._M_impl._M_finish,
+        .                  .                  .          .          .          .          .          .          .           					  this->_M_impl._M_finish,
+        .                  .                  .          .          .          .          .          .          .           					  _M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .           	    }
+        9 ( 0.00%)         3 ( 0.00%)         3 ( 0.00%) 1 ( 0.06%) 0          0          1 ( 0.06%) .          .           	  this->_M_impl._M_finish = this->_M_impl._M_start + __xlen;
+        .                  .                  .          .          .          .          .          .          .           	}
+       18 ( 0.00%)        21 ( 0.00%)         0          1 ( 0.06%) 0          0          1 ( 0.06%) .          .                 return *this;
+        .                  .                  .          .          .          .          .          .          .               }
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .             template<typename _Tp, typename _Alloc>
+        .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+        .                  .                  .          .          .          .          .          .          .               void
+        .                  .                  .          .          .          .          .          .          .               vector<_Tp, _Alloc>::
+        .                  .                  .          .          .          .          .          .          .               _M_fill_assign(size_t __n, const value_type& __val)
+        .                  .                  .          .          .          .          .          .          .               {
+-- line 272 ----------------------------------------
+-- line 445 ----------------------------------------
+        .                  .                  .          .          .          .          .          .          .                 vector<_Tp, _Alloc>::
+        .                  .                  .          .          .          .          .          .          .                 _M_realloc_insert(iterator __position, _Args&&... __args)
+        .                  .                  .          .          .          .          .          .          .           #else
+        .                  .                  .          .          .          .          .          .          .             template<typename _Tp, typename _Alloc>
+        .                  .                  .          .          .          .          .          .          .               void
+        .                  .                  .          .          .          .          .          .          .               vector<_Tp, _Alloc>::
+        .                  .                  .          .          .          .          .          .          .               _M_realloc_insert(iterator __position, const _Tp& __x)
+        .                  .                  .          .          .          .          .          .          .           #endif
+      150 ( 0.00%)         0                225 ( 0.00%) 1 ( 0.06%) 0          0          1 ( 0.06%) .          .               {
+        .                  .                  .          .          .          .          .          .          .                 const size_type __len =
+        .                  .                  .          .          .          .          .          .          .           	_M_check_len(size_type(1), "vector::_M_realloc_insert");
+        .                  .                  .          .          .          .          .          .          .                 pointer __old_start = this->_M_impl._M_start;
+        .                  .                  .          .          .          .          .          .          .                 pointer __old_finish = this->_M_impl._M_finish;
+        .                  .                  .          .          .          .          .          .          .                 const size_type __elems_before = __position - begin();
+        .                  .                  .          .          .          .          .          .          .                 pointer __new_start(this->_M_allocate(__len));
+        .                  .                  .          .          .          .          .          .          .                 pointer __new_finish(__new_start);
+        .                  .                  .          .          .          .          .          .          .                 __try
+        .                  .                  .          .          .          .          .          .          .           	{
+        .                  .                  .          .          .          .          .          .          .           	  // The order of the three operations is dictated by the C++11
+        .                  .                  .          .          .          .          .          .          .           	  // case, where the moves could alter a new element belonging
+        .                  .                  .          .          .          .          .          .          .           	  // to the existing vector.  This is an issue only for callers
+        .                  .                  .          .          .          .          .          .          .           	  // taking the element by lvalue ref (see last bullet of C++11
+        .                  .                  .          .          .          .          .          .          .           	  // [res.on.arguments]).
+        .                  .                  .          .          .          .          .          .          .           	  _Alloc_traits::construct(this->_M_impl,
+       36 ( 0.00%)         0                  0          1 ( 0.06%) 0          0          1 ( 0.06%) .          .           				   __new_start + __elems_before,
+        .                  .                  .          .          .          .          .          .          .           #if __cplusplus >= 201103L
+        .                  .                  .          .          .          .          .          .          .           				   std::forward<_Args>(__args)...);
+        .                  .                  .          .          .          .          .          .          .           #else
+        .                  .                  .          .          .          .          .          .          .           				   __x);
+        .                  .                  .          .          .          .          .          .          .           #endif
+        .                  .                  .          .          .          .          .          .          .           	  __new_finish = pointer();
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .           #if __cplusplus >= 201103L
+        .                  .                  .          .          .          .          .          .          .           	  if _GLIBCXX17_CONSTEXPR (_S_use_relocate())
+        .                  .                  .          .          .          .          .          .          .           	    {
+        .                  .                  .          .          .          .          .          .          .           	      __new_finish = _S_relocate(__old_start, __position.base(),
+        .                  .                  .          .          .          .          .          .          .           					 __new_start, _M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .           
+       25 ( 0.00%)         .                  .          .          .          .          .          .          .           	      ++__new_finish;
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .           	      __new_finish = _S_relocate(__position.base(), __old_finish,
+        .                  .                  .          .          .          .          .          .          .           					 __new_finish, _M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .           	    }
+        .                  .                  .          .          .          .          .          .          .           	  else
+        .                  .                  .          .          .          .          .          .          .           #endif
+        .                  .                  .          .          .          .          .          .          .           	    {
+        .                  .                  .          .          .          .          .          .          .           	      __new_finish
+-- line 491 ----------------------------------------
+-- line 513 ----------------------------------------
+        .                  .                  .          .          .          .          .          .          .           	}
+        .                  .                  .          .          .          .          .          .          .           #if __cplusplus >= 201103L
+        .                  .                  .          .          .          .          .          .          .                 if _GLIBCXX17_CONSTEXPR (!_S_use_relocate())
+        .                  .                  .          .          .          .          .          .          .           #endif
+        .                  .                  .          .          .          .          .          .          .           	std::_Destroy(__old_start, __old_finish, _M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .                 _GLIBCXX_ASAN_ANNOTATE_REINIT;
+        .                  .                  .          .          .          .          .          .          .                 _M_deallocate(__old_start,
+        .                  .                  .          .          .          .          .          .          .           		    this->_M_impl._M_end_of_storage - __old_start);
+   39,365 ( 0.00%)         0             78,730 ( 0.02%) 1 ( 0.06%) 0          1 ( 0.01%) 1 ( 0.06%) .          .                 this->_M_impl._M_start = __new_start;
+        .                  .                  .          .          .          .          .          .          .                 this->_M_impl._M_finish = __new_finish;
+  118,081 ( 0.00%)         0             39,365 ( 0.01%) .          .          .          .          .          .                 this->_M_impl._M_end_of_storage = __new_start + __len;
+      150 ( 0.00%)       225 ( 0.00%)         .          .          .          .          .          .          .               }
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .             template<typename _Tp, typename _Alloc>
+        .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+        .                  .                  .          .          .          .          .          .          .               void
+        .                  .                  .          .          .          .          .          .          .               vector<_Tp, _Alloc>::
+        .                  .                  .          .          .          .          .          .          .               _M_fill_insert(iterator __position, size_type __n, const value_type& __x)
+        .                  .                  .          .          .          .          .          .          .               {
+        .                  .                  .          .          .          .          .          .          .                 if (__n != 0)
+-- line 532 ----------------------------------------
+-- line 628 ----------------------------------------
+        .                  .                  .          .          .          .          .          .          .               }
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .           #if __cplusplus >= 201103L
+        .                  .                  .          .          .          .          .          .          .             template<typename _Tp, typename _Alloc>
+        .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+        .                  .                  .          .          .          .          .          .          .               void
+        .                  .                  .          .          .          .          .          .          .               vector<_Tp, _Alloc>::
+        .                  .                  .          .          .          .          .          .          .               _M_default_append(size_type __n)
+       18 ( 0.00%)         0                 27 ( 0.00%) .          .          .          .          .          .               {
+        3 ( 0.00%)         .                  .          .          .          .          .          .          .                 if (__n != 0)
+        .                  .                  .          .          .          .          .          .          .           	{
+        .                  .                  .          .          .          .          .          .          .           	  const size_type __size = size();
+        .                  .                  .          .          .          .          .          .          .           	  size_type __navail = size_type(this->_M_impl._M_end_of_storage
+        3 ( 0.00%)         .                  .          .          .          .          .          .          .           					 - this->_M_impl._M_finish);
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .           	  if (__size > max_size() || __navail > max_size() - __size)
+        .                  .                  .          .          .          .          .          .          .           	    __builtin_unreachable();
+        .                  .                  .          .          .          .          .          .          .           
+        6 ( 0.00%)         0                  0          1 ( 0.06%) 0          0          1 ( 0.06%) .          .           	  if (__navail >= __n)
+        .                  .                  .          .          .          .          .          .          .           	    {
+        .                  .                  .          .          .          .          .          .          .           	      _GLIBCXX_ASAN_ANNOTATE_GROW(__n);
+        .                  .                  .          .          .          .          .          .          .           	      this->_M_impl._M_finish =
+        .                  .                  .          .          .          .          .          .          .           		std::__uninitialized_default_n_a(this->_M_impl._M_finish,
+        .                  .                  .          .          .          .          .          .          .           						 __n, _M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .           	      _GLIBCXX_ASAN_ANNOTATE_GREW(__n);
+        .                  .                  .          .          .          .          .          .          .           	    }
+        .                  .                  .          .          .          .          .          .          .           	  else
+-- line 654 ----------------------------------------
+-- line 660 ----------------------------------------
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .           	      const size_type __len =
+        .                  .                  .          .          .          .          .          .          .           		_M_check_len(__n, "vector::_M_default_append");
+        .                  .                  .          .          .          .          .          .          .           	      pointer __new_start(this->_M_allocate(__len));
+        .                  .                  .          .          .          .          .          .          .           	      if _GLIBCXX17_CONSTEXPR (_S_use_relocate())
+        .                  .                  .          .          .          .          .          .          .           		{
+        .                  .                  .          .          .          .          .          .          .           		  __try
+        .                  .                  .          .          .          .          .          .          .           		    {
+        3 ( 0.00%)         .                  .          .          .          .          .          .          .           		      std::__uninitialized_default_n_a(__new_start + __size,
+        .                  .                  .          .          .          .          .          .          .           			      __n, _M_get_Tp_allocator());
+        .                  .                  .          .          .          .          .          .          .           		    }
+        .                  .                  .          .          .          .          .          .          .           		  __catch(...)
+        .                  .                  .          .          .          .          .          .          .           		    {
+        .                  .                  .          .          .          .          .          .          .           		      _M_deallocate(__new_start, __len);
+        .                  .                  .          .          .          .          .          .          .           		      __throw_exception_again;
+        .                  .                  .          .          .          .          .          .          .           		    }
+        .                  .                  .          .          .          .          .          .          .           		  _S_relocate(__old_start, __old_finish,
+-- line 676 ----------------------------------------
+-- line 702 ----------------------------------------
+        .                  .                  .          .          .          .          .          .          .           	      _GLIBCXX_ASAN_ANNOTATE_REINIT;
+        .                  .                  .          .          .          .          .          .          .           	      _M_deallocate(__old_start,
+        .                  .                  .          .          .          .          .          .          .           			    this->_M_impl._M_end_of_storage - __old_start);
+        .                  .                  .          .          .          .          .          .          .           	      this->_M_impl._M_start = __new_start;
+        .                  .                  .          .          .          .          .          .          .           	      this->_M_impl._M_finish = __new_start + __size + __n;
+        .                  .                  .          .          .          .          .          .          .           	      this->_M_impl._M_end_of_storage = __new_start + __len;
+        .                  .                  .          .          .          .          .          .          .           	    }
+        .                  .                  .          .          .          .          .          .          .           	}
+       18 ( 0.00%)        27 ( 0.00%)         .          .          .          .          .          .          .               }
+        .                  .                  .          .          .          .          .          .          .           
+        .                  .                  .          .          .          .          .          .          .             template<typename _Tp, typename _Alloc>
+        .                  .                  .          .          .          .          .          .          .               _GLIBCXX20_CONSTEXPR
+        .                  .                  .          .          .          .          .          .          .               bool
+        .                  .                  .          .          .          .          .          .          .               vector<_Tp, _Alloc>::
+        .                  .                  .          .          .          .          .          .          .               _M_shrink_to_fit()
+        .                  .                  .          .          .          .          .          .          .               {
+        .                  .                  .          .          .          .          .          .          .                 if (capacity() == size())
+-- line 718 ----------------------------------------
+
+8,387,999 ( 0.11%) 5,352,136 ( 0.21%)   590,311 ( 0.14%) 2 ( 0.13%) 0          0          2 ( 0.13%) .          .           <counts for unidentified lines in /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/vector.tcc>
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h
+--------------------------------------------------------------------------------
+Ir                   Dr                   Dw                 I1mr       D1mr           D1mw           ILmr       DLmr       DLmw           
+
+-- line 92 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .                 struct _Vector_impl_data
+          .                    .                  .          .              .              .          .          .              .                 {
+          .                    .                  .          .              .              .          .          .              .           	pointer _M_start;
+          .                    .                  .          .              .              .          .          .              .           	pointer _M_finish;
+          .                    .                  .          .              .              .          .          .              .           	pointer _M_end_of_storage;
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .           	_GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .           	_Vector_impl_data() _GLIBCXX_NOEXCEPT
+  2,761,359 ( 0.04%)           0          4,127,966 ( 0.97%) 0              0              1 ( 0.01%) .          .              .           	: _M_start(), _M_finish(), _M_end_of_storage()
+491,645,834 ( 6.54%) 149,893,923 ( 5.83%) 82,159,930 (19.30%) 203 (12.86%) 1,522 ( 0.31%) 13,585 (90.88%) 202 (12.94%) 98 ( 2.18%) 13,377 (93.91%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/istream:Barenn::ler_dados(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (2x)
+          .                    .                  .          .              .              .          .          .              .           	{ }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .           #if __cplusplus >= 201103L
+          .                    .                  .          .              .              .          .          .              .           	_GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .           	_Vector_impl_data(_Vector_impl_data&& __x) noexcept
+     23,524 ( 0.00%)      11,762 ( 0.00%)    11,762 ( 0.00%) 0              1 ( 0.00%)   273 ( 1.83%) 0          0            271 ( 1.90%)  	: _M_start(__x._M_start), _M_finish(__x._M_finish),
+     23,524 ( 0.00%)      11,762 ( 0.00%)    11,762 ( 0.00%) 0            926 ( 0.19%) 2,652 (17.74%) 0          0          2,638 (18.52%)  	  _M_end_of_storage(__x._M_end_of_storage)
+     23,524 ( 0.00%)           0             35,286 ( 0.01%) .              .              .          .          .              .           	{ __x._M_start = __x._M_finish = __x._M_end_of_storage = pointer(); }
+          .                    .                  .          .              .              .          .          .              .           #endif
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .           	_GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .           	void
+          .                    .                  .          .              .              .          .          .              .           	_M_copy_data(_Vector_impl_data const& __x) _GLIBCXX_NOEXCEPT
+          .                    .                  .          .              .              .          .          .              .           	{
+          .                    .                  .          .              .              .          .          .              .           	  _M_start = __x._M_start;
+          .                    .                  .          .              .              .          .          .              .           	  _M_finish = __x._M_finish;
+-- line 116 ----------------------------------------
+-- line 361 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .                 _Vector_base(const allocator_type& __a, _Vector_base&& __x)
+          .                    .                  .          .              .              .          .          .              .                 : _M_impl(_Tp_alloc_type(__a), std::move(__x._M_impl))
+          .                    .                  .          .              .              .          .          .              .                 { }
+          .                    .                  .          .              .              .          .          .              .           #endif
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 ~_Vector_base() _GLIBCXX_NOEXCEPT
+          .                    .                  .          .              .              .          .          .              .                 {
+  1,960,847 ( 0.03%)   1,960,847 ( 0.08%)         0          3 ( 0.19%) 1,409 ( 0.29%)     0          3 ( 0.19%) .              .           	_M_deallocate(_M_impl._M_start,
+          .                    .                  .          .              .              .          .          .              .           		      _M_impl._M_end_of_storage - _M_impl._M_start);
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .               public:
+          .                    .                  .          .              .              .          .          .              .                 _Vector_impl _M_impl;
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 pointer
+          .                    .                  .          .              .              .          .          .              .                 _M_allocate(size_t __n)
+          .                    .                  .          .              .              .          .          .              .                 {
+          .                    .                  .          .              .              .          .          .              .           	typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
+  2,386,227 ( 0.03%)           .                  .          .              .              .          .          .              .           	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 void
+          .                    .                  .          .              .              .          .          .              .                 _M_deallocate(pointer __p, size_t __n)
+          .                    .                  .          .              .              .          .          .              .                 {
+          .                    .                  .          .              .              .          .          .              .           	typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
+  1,966,495 ( 0.03%)           0                  0          2 ( 0.13%)     0              0          2 ( 0.13%) .              .           	if (__p)
+          .                    .                  .          .              .              .          .          .              .           	  _Tr::deallocate(_M_impl, __p, __n);
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .               protected:
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 void
+          .                    .                  .          .              .              .          .          .              .                 _M_create_storage(size_t __n)
+          .                    .                  .          .              .              .          .          .              .                 {
+  1,956,985 ( 0.03%)           0          2,543,762 ( 0.60%) 0              0              1 ( 0.01%) .          .              .           	this->_M_impl._M_start = this->_M_allocate(__n);
+          .                    .                  .          .              .              .          .          .              .           	this->_M_impl._M_finish = this->_M_impl._M_start;
+  3,913,970 ( 0.05%)           0          2,151,958 ( 0.51%) 1 ( 0.06%)     0              0          1 ( 0.06%) .              .           	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .               };
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .             /**
+          .                    .                  .          .              .              .          .          .              .              *  @brief A standard container which offers fixed time access to
+          .                    .                  .          .              .              .          .          .              .              *  individual elements in any order.
+          .                    .                  .          .              .              .          .          .              .              *
+          .                    .                  .          .              .              .          .          .              .              *  @ingroup sequences
+-- line 408 ----------------------------------------
+-- line 727 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .                  *  The dtor only erases the elements, and note that if the
+          .                    .                  .          .              .              .          .          .              .                  *  elements themselves are pointers, the pointed-to memory is
+          .                    .                  .          .              .              .          .          .              .                  *  not touched in any way.  Managing the pointer is the user's
+          .                    .                  .          .              .              .          .          .              .                  *  responsibility.
+          .                    .                  .          .              .              .          .          .              .                  */
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 ~vector() _GLIBCXX_NOEXCEPT
+          .                    .                  .          .              .              .          .          .              .                 {
+          8 ( 0.00%)          10 ( 0.00%)         .          .              .              .          .          .              .           	std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+          .                    .                  .          .              .              .          .          .              .           		      _M_get_Tp_allocator());
+          .                    .                  .          .              .              .          .          .              .           	_GLIBCXX_ASAN_ANNOTATE_BEFORE_DEALLOC;
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 /**
+          .                    .                  .          .              .              .          .          .              .                  *  @brief  %Vector assignment operator.
+          .                    .                  .          .              .              .          .          .              .                  *  @param  __x  A %vector of identical element and allocator types.
+          .                    .                  .          .              .              .          .          .              .                  *
+-- line 743 ----------------------------------------
+-- line 985 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .                 { return const_reverse_iterator(begin()); }
+          .                    .                  .          .              .              .          .          .              .           #endif
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 // [23.2.4.2] capacity
+          .                    .                  .          .              .              .          .          .              .                 /**  Returns the number of elements in the %vector.  */
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 size_type
+          .                    .                  .          .              .              .          .          .              .                 size() const _GLIBCXX_NOEXCEPT
+  6,621,406 ( 0.09%)   4,179,325 ( 0.16%)         0          3 ( 0.19%)    52 ( 0.01%)     0          3 ( 0.19%) .              .                 { return size_type(this->_M_impl._M_finish - this->_M_impl._M_start); }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 /**  Returns the size() of the largest possible %vector.  */
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 size_type
+          .                    .                  .          .              .              .          .          .              .                 max_size() const _GLIBCXX_NOEXCEPT
+          .                    .                  .          .              .              .          .          .              .                 { return _S_max_size(_M_get_Tp_allocator()); }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .           #if __cplusplus >= 201103L
+-- line 1001 ----------------------------------------
+-- line 1007 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .                  *  number of elements.  If the number is smaller than the
+          .                    .                  .          .              .              .          .          .              .                  *  %vector's current size the %vector is truncated, otherwise
+          .                    .                  .          .              .              .          .          .              .                  *  default constructed elements are appended.
+          .                    .                  .          .              .              .          .          .              .                  */
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 void
+          .                    .                  .          .              .              .          .          .              .                 resize(size_type __new_size)
+          .                    .                  .          .              .              .          .          .              .                 {
+  1,180,620 ( 0.02%)           .                  .          .              .              .          .          .              .           	if (__new_size > size())
+          3 ( 0.00%)           .                  .          .              .              .          .          .              .           	  _M_default_append(__new_size - size());
+     10,079 ( 0.00%)       1,851 ( 0.00%)       334 ( 0.00%) 4 ( 0.25%)     3 ( 0.00%)     2 ( 0.01%) 4 ( 0.26%) 0              2 ( 0.01%)  => /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/vector.tcc:std::vector<float, std::allocator<float> >::_M_default_append(unsigned long) (3x)
+    590,307 ( 0.01%)           .                  .          .              .              .          .          .              .           	else if (__new_size < size())
+          .                    .                  .          .              .              .          .          .              .           	  _M_erase_at_end(this->_M_impl._M_start + __new_size);
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 /**
+          .                    .                  .          .              .              .          .          .              .                  *  @brief  Resizes the %vector to the specified number of elements.
+          .                    .                  .          .              .              .          .          .              .                  *  @param  __new_size  Number of elements the %vector should contain.
+          .                    .                  .          .              .              .          .          .              .                  *  @param  __x  Data with which new elements should be populated.
+          .                    .                  .          .              .              .          .          .              .                  *
+-- line 1025 ----------------------------------------
+-- line 1071 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 /**
+          .                    .                  .          .              .              .          .          .              .                  *  Returns the total number of elements that the %vector can
+          .                    .                  .          .              .              .          .          .              .                  *  hold before needing to allocate more memory.
+          .                    .                  .          .              .              .          .          .              .                  */
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 size_type
+          .                    .                  .          .              .              .          .          .              .                 capacity() const _GLIBCXX_NOEXCEPT
+    590,310 ( 0.01%)     590,310 ( 0.02%)         .          .              .              .          .          .              .                 { return size_type(this->_M_impl._M_end_of_storage
+  1,180,620 ( 0.02%)     590,310 ( 0.02%)         .          .              .              .          .          .              .           			 - this->_M_impl._M_start); }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 /**
+          .                    .                  .          .              .              .          .          .              .                  *  Returns true if the %vector is empty.  (Thus begin() would
+          .                    .                  .          .              .              .          .          .              .                  *  equal end().)
+          .                    .                  .          .              .              .          .          .              .                  */
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 bool
+          .                    .                  .          .              .              .          .          .              .                 empty() const _GLIBCXX_NOEXCEPT
+-- line 1088 ----------------------------------------
+-- line 1121 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .                  *  out_of_range lookups are not defined. (For checked lookups
+          .                    .                  .          .              .              .          .          .              .                  *  see at().)
+          .                    .                  .          .              .              .          .          .              .                  */
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 reference
+          .                    .                  .          .              .              .          .          .              .                 operator[](size_type __n) _GLIBCXX_NOEXCEPT
+          .                    .                  .          .              .              .          .          .              .                 {
+          .                    .                  .          .              .              .          .          .              .           	__glibcxx_requires_subscript(__n);
+553,047,654 ( 7.36%) 530,326,560 (20.64%)         .          .              .              .          .          .              .           	return *(this->_M_impl._M_start + __n);
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 /**
+          .                    .                  .          .              .              .          .          .              .                  *  @brief  Subscript access to the data contained in the %vector.
+          .                    .                  .          .              .              .          .          .              .                  *  @param __n The index of the element for which data should be
+          .                    .                  .          .              .              .          .          .              .                  *  accessed.
+          .                    .                  .          .              .              .          .          .              .                  *  @return  Read-only (constant) reference to data.
+          .                    .                  .          .              .              .          .          .              .                  *
+-- line 1137 ----------------------------------------
+-- line 1140 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .                  *  out_of_range lookups are not defined. (For checked lookups
+          .                    .                  .          .              .              .          .          .              .                  *  see at().)
+          .                    .                  .          .              .              .          .          .              .                  */
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX_NODISCARD _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 const_reference
+          .                    .                  .          .              .              .          .          .              .                 operator[](size_type __n) const _GLIBCXX_NOEXCEPT
+          .                    .                  .          .              .              .          .          .              .                 {
+          .                    .                  .          .              .              .          .          .              .           	__glibcxx_requires_subscript(__n);
+      1,797 ( 0.00%)           0                  0          1 ( 0.06%)     0              0          1 ( 0.06%) .              .           	return *(this->_M_impl._M_start + __n);
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .               protected:
+          .                    .                  .          .              .              .          .          .              .                 /// Safety check used only from at().
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 void
+          .                    .                  .          .              .              .          .          .              .                 _M_range_check(size_type __n) const
+          .                    .                  .          .              .              .          .          .              .                 {
+-- line 1156 ----------------------------------------
+-- line 1698 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .           	}
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 // Called by the first initialize_dispatch above and by the
+          .                    .                  .          .              .              .          .          .              .                 // vector(n,value,a) constructor.
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 void
+          .                    .                  .          .              .              .          .          .              .                 _M_fill_initialize(size_type __n, const value_type& __value)
+          .                    .                  .          .              .              .          .          .              .                 {
+          6 ( 0.00%)           0                  6 ( 0.00%) .              .              .          .          .              .           	this->_M_impl._M_finish =
+          .                    .                  .          .              .              .          .          .              .           	  std::__uninitialized_fill_n_a(this->_M_impl._M_start, __n, __value,
+          .                    .                  .          .              .              .          .          .              .           					_M_get_Tp_allocator());
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .           #if __cplusplus >= 201103L
+          .                    .                  .          .              .              .          .          .              .                 // Called by the vector(n) constructor.
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 void
+          .                    .                  .          .              .              .          .          .              .                 _M_default_initialize(size_type __n)
+          .                    .                  .          .              .              .          .          .              .                 {
+          3 ( 0.00%)           0                  3 ( 0.00%) .              .              .          .          .              .           	this->_M_impl._M_finish =
+          .                    .                  .          .              .              .          .          .              .           	  std::__uninitialized_default_n_a(this->_M_impl._M_start, __n,
+          .                    .                  .          .              .              .          .          .              .           					   _M_get_Tp_allocator());
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           #endif
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 // Internal assign functions follow.  The *_aux functions do the actual
+          .                    .                  .          .              .              .          .          .              .                 // assignment work for the range versions.
+          .                    .                  .          .              .              .          .          .              .           
+-- line 1725 ----------------------------------------
+-- line 1890 ----------------------------------------
+          .                    .                  .          .              .              .          .          .              .                 { return _M_insert_rval(__position, std::move(__v)); }
+          .                    .                  .          .              .              .          .          .              .           #endif
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 // Called by _M_fill_insert, _M_insert_aux etc.
+          .                    .                  .          .              .              .          .          .              .                 _GLIBCXX20_CONSTEXPR
+          .                    .                  .          .              .              .          .          .              .                 size_type
+          .                    .                  .          .              .              .          .          .              .                 _M_check_len(size_type __n, const char* __s) const
+          .                    .                  .          .              .              .          .          .              .                 {
+    118,109 ( 0.00%)           0                  0          1 ( 0.06%)     0              0          1 ( 0.06%) .              .           	if (max_size() - size() < __n)
+          .                    .                  .          .              .              .          .          .              .           	  __throw_length_error(__N(__s));
+          .                    .                  .          .              .              .          .          .              .           
+    157,529 ( 0.00%)           0                 20 ( 0.00%) .              .              .          .          .              .           	const size_type __len = size() + (std::max)(size(), __n);
+    118,134 ( 0.00%)           .                  .          .              .              .          .          .              .           	return (__len < size() || __len > max_size()) ? max_size() : __len;
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 // Called by constructors to check initial size.
+          .                    .                  .          .              .              .          .          .              .                 static _GLIBCXX20_CONSTEXPR size_type
+          .                    .                  .          .              .              .          .          .              .                 _S_check_init_len(size_type __n, const allocator_type& __a)
+          .                    .                  .          .              .              .          .          .              .                 {
+  1,760,154 ( 0.02%)           0                  0          1 ( 0.06%)     0              0          1 ( 0.06%) .              .           	if (__n > _S_max_size(_Tp_alloc_type(__a)))
+          .                    .                  .          .              .              .          .          .              .           	  __throw_length_error(
+          .                    .                  .          .              .              .          .          .              .           	      __N("cannot create std::vector larger than max_size()"));
+          .                    .                  .          .              .              .          .          .              .           	return __n;
+          .                    .                  .          .              .              .          .          .              .                 }
+          .                    .                  .          .              .              .          .          .              .           
+          .                    .                  .          .              .              .          .          .              .                 static _GLIBCXX20_CONSTEXPR size_type
+          .                    .                  .          .              .              .          .          .              .                 _S_max_size(const _Tp_alloc_type& __a) _GLIBCXX_NOEXCEPT
+          .                    .                  .          .              .              .          .          .              .                 {
+-- line 1917 ----------------------------------------
+
+  3,119,732 ( 0.04%)           0            194,988 ( 0.05%) 2 ( 0.13%)     0              1 ( 0.01%) 2 ( 0.13%) .              .           <counts for unidentified lines in /usr/bin/../lib/gcc/aarch64-linux-gnu/13/../../../../include/c++/13/bits/stl_vector.h>
+
+--------------------------------------------------------------------------------
+The following files chosen for auto-annotation could not be found:
+--------------------------------------------------------------------------------
+  ./malloc/./malloc/arena.c
+  ./malloc/./malloc/malloc.c
+  ./stdlib/./stdlib/strtod_l.c
+  ./string/../sysdeps/aarch64/multiarch/../memcpy.S
+  ./string/../sysdeps/aarch64/nptl/../memset.S
+
+--------------------------------------------------------------------------------
+Ir                     Dr                     Dw                   I1mr        D1mr            D1mw           ILmr        DLmr       DLmw           
+--------------------------------------------------------------------------------
+6,289,213,156 (83.71%) 2,230,598,413 (86.82%) 230,337,372 (54.10%) 62 ( 3.93%) 51,554 (10.66%) 7,956 (53.22%) 62 ( 3.97%) 0          7,825 (54.94%)  events annotated
+
