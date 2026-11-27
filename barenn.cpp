@@ -55,6 +55,8 @@ public:
         // Cada neurônio soma o viés aos produtos entre entradas e pesos.
         for (int i = 0; i < out_features; ++i) {
             float sum = bias[i];
+            // Soma vetorizada: as parcelas são somadas em outra ordem.
+            #pragma omp simd reduction(+:sum)
             for (int j = 0; j < in_features; ++j) {
                 sum += input[j] * weights[i * in_features + j];
             }

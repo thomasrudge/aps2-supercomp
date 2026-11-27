@@ -20,7 +20,7 @@ else
 NATIVE := -march=native
 endif
 
-RELEASE_FLAGS  := $(STD) $(WARN) -O3 $(NATIVE)
+RELEASE_FLAGS  := $(STD) $(WARN) -O3 $(NATIVE) -fopenmp-simd
 BASELINE_FLAGS := $(STD) $(WARN) -O2
 PROFILE_FLAGS  := $(RELEASE_FLAGS) -g
 
