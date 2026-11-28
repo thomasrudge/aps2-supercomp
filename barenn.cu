@@ -23,6 +23,11 @@ namespace Barenn {
 constexpr int entradas = 64;
 constexpr int classes = 10;
 constexpr int threads_por_bloco = 256;
+// Pesos e vieses das camadas 64 -> 32 -> 16 -> 10, em sequência.
+// Cada linha de pesos tem um float de padding.
+constexpr int parametros_total = (entradas + 2) * 32 + (32 + 2) * 16 + (16 + 2) * classes;
+// last_z, out, delta e grad_in de cada camada.
+constexpr int buffers_total = (3 * 32 + entradas) + (3 * 16 + 32) + (3 * classes + 16);
 
 // Transforma uma falha da API CUDA em exceção.
 void checa(cudaError_t erro) {
@@ -31,141 +36,84 @@ void checa(cudaError_t erro) {
     }
 }
 
-// Cada thread calcula um neurônio de saída.
-__global__ void forward_kernel(const float* input, const float* weights, const float* bias,
-                               float* last_z, float* out, int in_features, int out_features,
-                               bool final) {
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    if (i < out_features) {
-        // Cada neurônio soma o viés aos produtos entre entradas e pesos.
-        float sum = bias[i];
-        for (int j = 0; j < in_features; ++j) {
-            sum += input[j] * weights[i * in_features + j];
-        }
-        last_z[i] = sum;
-        // As camadas ocultas usam ReLU. A última devolve escores lineares.
-        out[i] = final ? sum : fmaxf(0.0f, sum);
-    }
-}
-
-// Cada thread calcula o delta de um neurônio.
-__global__ void delta_kernel(const float* grad_out, const float* last_z, float* delta,
-                             int out_features, bool final) {
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    if (i < out_features) {
-        delta[i] = final ? grad_out[i]
-                         : grad_out[i] * (last_z[i] > 0.0f ? 1.0f : 0.0f);
-    }
-}
-
-// Cada thread calcula o gradiente de uma entrada.
-__global__ void grad_in_kernel(const float* delta, const float* weights, float* grad_in,
-                               int in_features, int out_features) {
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    if (i < in_features) {
-        float sum = 0;
-        for (int j = 0; j < out_features; ++j) {
-            sum += delta[j] * weights[j * in_features + i];
-        }
-        grad_in[i] = sum;
-    }
-}
-
-// Cada thread atualiza um peso. As primeiras também atualizam um viés.
-__global__ void update_kernel(const float* delta, const float* last_input, float* weights,
-                              float* bias, int in_features, int out_features,
-                              float learning_rate) {
-    int k = blockIdx.x * blockDim.x + threadIdx.x;
-    if (k < out_features * in_features) {
-        weights[k] -= learning_rate * (delta[k / in_features] * last_input[k % in_features]);
-    }
-    if (k < out_features) {
-        bias[k] -= learning_rate * delta[k];
-    }
-}
-
-class DenseLayer {
+// Camada executada por todas as threads de um bloco. Os ponteiros apontam
+// para a shared memory.
+struct DenseLayer {
     int in_features;
     int out_features;
     bool final;
-    // Memória da GPU (prefixo d_).
-    // d_weights[i * in_features + j] liga a entrada j ao neurônio de saída i.
-    float* d_weights;
-    float* d_bias;
+    // weights[i * (in_features + 1) + j] liga a entrada j ao neurônio de saída i.
+    // O padding evita que as threads de um warp caiam no mesmo banco da shared memory.
+    float* weights;
+    float* bias;
     // Dados do último forward usados para calcular os gradientes.
-    const float* d_last_input = nullptr;
-    float* d_last_z;
+    const float* last_input = nullptr;
+    float* last_z;
     // Buffers reutilizados a cada amostra.
-    float* d_out;
-    float* d_delta;
-    float* d_grad_in;
+    float* out;
+    float* delta;
+    float* grad_in;
 
-public:
-    DenseLayer(int input_size, int output_size, bool is_final = false)
-        : in_features(input_size), out_features(output_size), final(is_final) {
-        // A semente fixa torna a inicialização de cada camada reproduzível.
-        mt19937 gen(1337);
-        uniform_real_distribution<float> distribution(-0.05f, 0.05f);
-        vector<float> weights(output_size * input_size);
-        for (float& weight : weights) {
-            weight = distribution(gen);
+    // Os parâmetros começam em p e os buffers em b. Os dois avançam.
+    __device__ DenseLayer(int input_size, int output_size, bool is_final, float*& p, float*& b)
+        : in_features(input_size), out_features(output_size), final(is_final),
+          weights(p), bias(p + (input_size + 1) * output_size), last_z(b),
+          out(b + output_size), delta(b + 2 * output_size), grad_in(b + 3 * output_size) {
+        p += (input_size + 2) * output_size;
+        b += 3 * output_size + input_size;
+    }
+
+    __device__ const float* Forward(const float* input) {
+        last_input = input;
+        // Cada neurônio soma o viés aos produtos entre entradas e pesos.
+        // A thread t calcula os neurônios t, t + blockDim.x, ...
+        for (int i = threadIdx.x; i < out_features; i += blockDim.x) {
+            float sum = bias[i];
+            for (int j = 0; j < in_features; ++j) {
+                sum += input[j] * weights[i * (in_features + 1) + j];
+            }
+            last_z[i] = sum;
+            // As camadas ocultas usam ReLU. A última devolve escores lineares.
+            out[i] = final ? sum : fmaxf(0.0f, sum);
         }
-        checa(cudaMalloc(&d_weights, weights.size() * sizeof(float)));
-        checa(cudaMalloc(&d_bias, output_size * sizeof(float)));
-        checa(cudaMalloc(&d_last_z, output_size * sizeof(float)));
-        checa(cudaMalloc(&d_out, output_size * sizeof(float)));
-        checa(cudaMalloc(&d_delta, output_size * sizeof(float)));
-        checa(cudaMalloc(&d_grad_in, input_size * sizeof(float)));
-        checa(cudaMemcpy(d_weights, weights.data(), weights.size() * sizeof(float),
-                         cudaMemcpyHostToDevice));
-        checa(cudaMemset(d_bias, 0, output_size * sizeof(float)));
+        __syncthreads();
+        return out;
     }
 
-    DenseLayer(const DenseLayer&) = delete;
-
-    ~DenseLayer() {
-        cudaFree(d_weights);
-        cudaFree(d_bias);
-        cudaFree(d_last_z);
-        cudaFree(d_out);
-        cudaFree(d_delta);
-        cudaFree(d_grad_in);
-    }
-
-    // Entrada e saída já estão na GPU. Nenhuma chamada copia dados ou espera a GPU.
-    const float* Forward(const float* input) {
-        d_last_input = input;
-        int blocos = (out_features + threads_por_bloco - 1) / threads_por_bloco;
-        forward_kernel<<<blocos, threads_por_bloco>>>(d_last_input, d_weights, d_bias,
-                                                      d_last_z, d_out, in_features,
-                                                      out_features, final);
-        return d_out;
-    }
-
-    const float* Backward(const float* grad_out, float learning_rate,
-                          bool compute_grad_in = true) {
-        int blocos_out = (out_features + threads_por_bloco - 1) / threads_por_bloco;
-        int blocos_in = (in_features + threads_por_bloco - 1) / threads_por_bloco;
-        int blocos_pesos = (out_features * in_features + threads_por_bloco - 1) /
-                           threads_por_bloco;
-
+    __device__ const float* Backward(const float* grad_out, float learning_rate,
+                                     bool compute_grad_in = true) {
         // Delta é o gradiente da perda em relação à soma antes da ativação.
         // Na ReLU, o gradiente passa apenas quando essa soma é positiva.
-        delta_kernel<<<blocos_out, threads_por_bloco>>>(grad_out, d_last_z, d_delta,
-                                                       out_features, final);
+        for (int i = threadIdx.x; i < out_features; i += blockDim.x) {
+            delta[i] = final ? grad_out[i]
+                             : grad_out[i] * (last_z[i] > 0.0f ? 1.0f : 0.0f);
+        }
+        __syncthreads();
 
         // O gradiente da entrada usa os pesos anteriores à atualização.
         if (compute_grad_in) {
-            grad_in_kernel<<<blocos_in, threads_por_bloco>>>(d_delta, d_weights, d_grad_in,
-                                                            in_features, out_features);
+            for (int i = threadIdx.x; i < in_features; i += blockDim.x) {
+                float sum = 0;
+                for (int j = 0; j < out_features; ++j) {
+                    sum += delta[j] * weights[j * (in_features + 1) + i];
+                }
+                grad_in[i] = sum;
+            }
+            __syncthreads();
         }
 
         // SGD por amostra. O gradiente do peso é delta vezes a entrada.
         // O gradiente do viés é o próprio delta.
-        update_kernel<<<blocos_pesos, threads_por_bloco>>>(d_delta, d_last_input, d_weights,
-                                                          d_bias, in_features, out_features,
-                                                          learning_rate);
-        return d_grad_in;
+        for (int k = threadIdx.x; k < out_features * in_features; k += blockDim.x) {
+            int i = k / in_features;
+            int j = k % in_features;
+            weights[i * (in_features + 1) + j] -= learning_rate * (delta[i] * last_input[j]);
+        }
+        for (int i = threadIdx.x; i < out_features; i += blockDim.x) {
+            bias[i] -= learning_rate * delta[i];
+        }
+        __syncthreads();
+        return grad_in;
     }
 };
 
@@ -229,12 +177,6 @@ __host__ __device__ float perda(const float* escores, int rotulo,
     return total;
 }
 
-// Calcula a perda e o gradiente na GPU e acumula a perda da época.
-__global__ void perda_kernel(const float* escores, const int* rotulo, float* gradiente,
-                             double* perda_total) {
-    *perda_total += perda(escores, *rotulo, gradiente);
-}
-
 // Copia as imagens e os rótulos para a GPU, em arrays contíguos.
 void envia(const vector<Amostra>& dados, float** d_imagens, int** d_rotulos) {
     vector<float> imagens;
@@ -251,8 +193,97 @@ void envia(const vector<Amostra>& dados, float** d_imagens, int** d_rotulos) {
                      cudaMemcpyHostToDevice));
 }
 
-void avaliar(DenseLayer& l1, DenseLayer& l2, DenseLayer& l3,
-             const vector<Amostra>& teste, const float* d_imagens) {
+// Pesos iniciais de uma camada, na mesma ordem do construtor da CPU,
+// seguidos do padding de cada linha e dos vieses.
+void inicializa(vector<float>& parametros, int input_size, int output_size) {
+    // A semente fixa torna a inicialização de cada camada reproduzível.
+    mt19937 gen(1337);
+    uniform_real_distribution<float> distribution(-0.05f, 0.05f);
+    for (int i = 0; i < output_size; ++i) {
+        for (int j = 0; j < input_size; ++j) {
+            parametros.push_back(distribution(gen));
+        }
+        parametros.push_back(0.0f);
+    }
+    parametros.insert(parametros.end(), output_size, 0.0f);
+}
+
+// Um único bloco treina todas as épocas, porque cada passo de SGD depende do
+// anterior. Pesos, vieses e ativações ficam na shared memory do bloco.
+__global__ void treino_kernel(float* parametros, const float* imagens, const int* rotulos,
+                              int n, int epocas, float taxa, double* perdas) {
+    __shared__ float memoria[parametros_total + buffers_total];
+    __shared__ float imagem[entradas];
+    __shared__ float gradiente[classes];
+    for (int k = threadIdx.x; k < parametros_total; k += blockDim.x) {
+        memoria[k] = parametros[k];
+    }
+    float* p = memoria;
+    float* b = memoria + parametros_total;
+    DenseLayer l1(entradas, 32, false, p, b);
+    DenseLayer l2(32, 16, false, p, b);
+    DenseLayer l3(16, classes, true, p, b);
+
+    for (int epoca = 0; epoca < epocas; ++epoca) {
+        double perda_total = 0;
+        // Uma época percorre todo o conjunto na ordem do arquivo.
+        for (int k = 0; k < n; ++k) {
+            int rotulo = rotulos[k];
+            for (int j = threadIdx.x; j < entradas; j += blockDim.x) {
+                imagem[j] = imagens[k * entradas + j];
+            }
+            __syncthreads();
+            const float* escores = l3.Forward(l2.Forward(l1.Forward(imagem)));
+            if (threadIdx.x == 0) {
+                perda_total += perda(escores, rotulo, gradiente);
+            }
+            __syncthreads();
+
+            // Propaga o gradiente da última camada até a primeira.
+            // Cada Backward também atualiza os parâmetros da sua camada.
+            const float* grad3 = l3.Backward(gradiente, taxa);
+            const float* grad2 = l2.Backward(grad3, taxa);
+            // A primeira camada não precisa do gradiente da entrada.
+            l1.Backward(grad2, taxa, false);
+        }
+        if (threadIdx.x == 0) {
+            perdas[epoca] = perda_total / n;
+        }
+    }
+
+    // Devolve os parâmetros treinados para a memória global.
+    for (int k = threadIdx.x; k < parametros_total; k += blockDim.x) {
+        parametros[k] = memoria[k];
+    }
+}
+
+// Só forward. Cada bloco avalia as imagens blockIdx.x, blockIdx.x + gridDim.x, ...
+__global__ void avaliacao_kernel(const float* parametros, const float* imagens, int n,
+                                 float* escores) {
+    __shared__ float memoria[parametros_total + buffers_total];
+    __shared__ float imagem[entradas];
+    for (int k = threadIdx.x; k < parametros_total; k += blockDim.x) {
+        memoria[k] = parametros[k];
+    }
+    float* p = memoria;
+    float* b = memoria + parametros_total;
+    DenseLayer l1(entradas, 32, false, p, b);
+    DenseLayer l2(32, 16, false, p, b);
+    DenseLayer l3(16, classes, true, p, b);
+
+    for (int k = blockIdx.x; k < n; k += gridDim.x) {
+        for (int j = threadIdx.x; j < entradas; j += blockDim.x) {
+            imagem[j] = imagens[k * entradas + j];
+        }
+        __syncthreads();
+        const float* saida = l3.Forward(l2.Forward(l1.Forward(imagem)));
+        for (int i = threadIdx.x; i < classes; i += blockDim.x) {
+            escores[k * classes + i] = saida[i];
+        }
+    }
+}
+
+void avaliar(const vector<float>& todos_escores, const vector<Amostra>& teste) {
     struct Exemplo {
         size_t linha;
         int real;
@@ -269,14 +300,12 @@ void avaliar(DenseLayer& l1, DenseLayer& l2, DenseLayer& l3,
     size_t exemplos_acerto = 0;
     size_t exemplos_erro = 0;
     double perda_total = 0;
-    vector<float> escores(classes);
 
-    // Só fazemos forward aqui. Os pesos ficam fixos.
+    // Os escores vieram do forward na GPU. Os pesos ficam fixos.
     for (size_t i = 0; i < teste.size(); ++i) {
         const auto& amostra = teste[i];
-        const float* d_escores = l3.Forward(l2.Forward(l1.Forward(d_imagens + i * entradas)));
-        checa(cudaMemcpy(escores.data(), d_escores, classes * sizeof(float),
-                         cudaMemcpyDeviceToHost));
+        vector<float> escores(todos_escores.begin() + i * classes,
+                              todos_escores.begin() + (i + 1) * classes);
         // O índice do maior escore indica a classe prevista.
         int previsto = static_cast<int>(
             max_element(escores.begin(), escores.end()) - escores.begin());
@@ -367,44 +396,30 @@ int main(int argc, char** argv) {
         constexpr int epocas = 51;
         constexpr float taxa = 0.02f;
         // Rede densa com dimensões 64 -> 32 -> 16 -> 10.
-        Barenn::DenseLayer l1(Barenn::entradas, 32);
-        Barenn::DenseLayer l2(32, 16);
-        Barenn::DenseLayer l3(16, Barenn::classes, true);
-        float* d_gradiente;
+        vector<float> parametros;
+        Barenn::inicializa(parametros, Barenn::entradas, 32);
+        Barenn::inicializa(parametros, 32, 16);
+        Barenn::inicializa(parametros, 16, Barenn::classes);
+        float* d_parametros;
         double* d_perdas;
-        Barenn::checa(cudaMalloc(&d_gradiente, Barenn::classes * sizeof(float)));
+        Barenn::checa(cudaMalloc(&d_parametros, parametros.size() * sizeof(float)));
+        Barenn::checa(cudaMemcpy(d_parametros, parametros.data(),
+                                 parametros.size() * sizeof(float), cudaMemcpyHostToDevice));
         Barenn::checa(cudaMalloc(&d_perdas, epocas * sizeof(double)));
-        Barenn::checa(cudaMemset(d_perdas, 0, epocas * sizeof(double)));
         array<double, epocas> perdas{};
         float* d_imagens;
         int* d_rotulos;
 
-        // A medição inclui a cópia do treino para a GPU, forward, perda e backward
-        // de todas as épocas e a cópia das perdas de volta.
+        // A medição inclui a cópia do treino para a GPU, o kernel de treino
+        // e a cópia das perdas de volta.
         const auto inicio = chrono::steady_clock::now();
         Barenn::envia(treino, &d_imagens, &d_rotulos);
-        for (int epoca = 0; epoca < epocas; ++epoca) {
-            // Uma época percorre todo o conjunto na ordem do arquivo.
-            for (size_t k = 0; k < treino.size(); ++k) {
-                const float* escores =
-                    l3.Forward(l2.Forward(l1.Forward(d_imagens + k * Barenn::entradas)));
-                Barenn::perda_kernel<<<1, 1>>>(escores, d_rotulos + k, d_gradiente,
-                                               d_perdas + epoca);
-
-                // Propaga o gradiente da última camada até a primeira.
-                // Cada Backward também atualiza os parâmetros da sua camada.
-                const float* grad3 = l3.Backward(d_gradiente, taxa);
-                const float* grad2 = l2.Backward(grad3, taxa);
-                // A primeira camada não precisa do gradiente da entrada.
-                l1.Backward(grad2, taxa, false);
-            }
-        }
-        // A cópia espera a GPU terminar todos os kernels.
+        Barenn::treino_kernel<<<1, Barenn::threads_por_bloco>>>(
+            d_parametros, d_imagens, d_rotulos, static_cast<int>(treino.size()), epocas, taxa,
+            d_perdas);
+        // A cópia espera o kernel terminar.
         Barenn::checa(cudaMemcpy(perdas.data(), d_perdas, epocas * sizeof(double),
                                  cudaMemcpyDeviceToHost));
-        for (int epoca = 0; epoca < epocas; ++epoca) {
-            perdas[epoca] /= treino.size();
-        }
         const chrono::duration<double> tempo = chrono::steady_clock::now() - inicio;
         // Falhas no lançamento dos kernels aparecem aqui.
         Barenn::checa(cudaGetLastError());
@@ -419,15 +434,25 @@ int main(int argc, char** argv) {
         cout << "Tempo de treino " << tempo.count() << " s\n";
         float* d_imagens_teste;
         int* d_rotulos_teste;
+        float* d_escores;
         Barenn::envia(teste, &d_imagens_teste, &d_rotulos_teste);
-        Barenn::avaliar(l1, l2, l3, teste, d_imagens_teste);
+        Barenn::checa(cudaMalloc(&d_escores, teste.size() * Barenn::classes * sizeof(float)));
+        // Um bloco por imagem de teste.
+        Barenn::avaliacao_kernel<<<static_cast<int>(teste.size()), Barenn::threads_por_bloco>>>(
+            d_parametros, d_imagens_teste, static_cast<int>(teste.size()), d_escores);
+        vector<float> escores(teste.size() * Barenn::classes);
+        Barenn::checa(cudaMemcpy(escores.data(), d_escores, escores.size() * sizeof(float),
+                                 cudaMemcpyDeviceToHost));
+        Barenn::checa(cudaGetLastError());
+        Barenn::avaliar(escores, teste);
 
-        cudaFree(d_gradiente);
+        cudaFree(d_parametros);
         cudaFree(d_perdas);
         cudaFree(d_imagens);
         cudaFree(d_rotulos);
         cudaFree(d_imagens_teste);
         cudaFree(d_rotulos_teste);
+        cudaFree(d_escores);
     } catch (const exception& erro) {
         cerr << "Erro: " << erro.what() << "\n";
         return 1;
