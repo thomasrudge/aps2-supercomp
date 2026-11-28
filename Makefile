@@ -20,7 +20,15 @@ else
 NATIVE := -march=native
 endif
 
-RELEASE_FLAGS  := $(STD) $(WARN) -O3 $(NATIVE) -fopenmp-simd
+# OpenMP: no macOS o Apple clang usa a libomp do Homebrew (brew install libomp).
+ifeq ($(shell uname -s),Darwin)
+LIBOMP ?= /opt/homebrew/opt/libomp
+OPENMP := -Xpreprocessor -fopenmp -I$(LIBOMP)/include -L$(LIBOMP)/lib -lomp
+else
+OPENMP := -fopenmp
+endif
+
+RELEASE_FLAGS  := $(STD) $(WARN) -O3 $(NATIVE) $(OPENMP)
 BASELINE_FLAGS := $(STD) $(WARN) -O2
 PROFILE_FLAGS  := $(RELEASE_FLAGS) -g
 
