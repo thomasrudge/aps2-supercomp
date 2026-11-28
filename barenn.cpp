@@ -110,13 +110,18 @@ vector<Amostra> ler_dados(const string& caminho) {
         throw runtime_error("Não foi possível abrir " + caminho);
     }
 
-    vector<Amostra> dados;
+    // Lê as linhas em série e converte em paralelo.
+    vector<string> linhas;
     string linha;
-    size_t numero_linha = 0;
     while (getline(arquivo, linha)) {
-        ++numero_linha;
-        istringstream campos(linha);
-        Amostra amostra{};
+        linhas.push_back(linha);
+    }
+    vector<Amostra> dados(linhas.size());
+    size_t invalida = linhas.size();
+    #pragma omp parallel for reduction(min:invalida)
+    for (size_t numero_linha = 0; numero_linha < linhas.size(); ++numero_linha) {
+        istringstream campos(linhas[numero_linha]);
+        Amostra& amostra = dados[numero_linha];
         // Cada atributo deve ser seguido por vírgula, inclusive o último.
         for (int i = 0; i < entradas; ++i) {
             float valor;
@@ -133,10 +138,13 @@ vector<Amostra> ler_dados(const string& caminho) {
             !(campos >> amostra.rotulo) ||
             amostra.rotulo < 0 || amostra.rotulo >= classes ||
             !(campos >> ws).eof()) {
-            throw runtime_error(caminho + ":" + to_string(numero_linha) +
-                " — esperados 64 atributos de 0 a 16 e um rótulo inteiro de 0 a 9");
+            invalida = min(invalida, numero_linha);
         }
-        dados.push_back(move(amostra));
+    }
+    // A exceção não pode sair da região paralela: reporta a primeira linha inválida.
+    if (invalida < linhas.size()) {
+        throw runtime_error(caminho + ":" + to_string(invalida + 1) +
+            " — esperados 64 atributos de 0 a 16 e um rótulo inteiro de 0 a 9");
     }
     if (arquivo.bad() || dados.empty()) {
         throw runtime_error("Falha de leitura ou arquivo vazio: " + caminho);
