@@ -1,0 +1,44 @@
+Generating SQLite file /scratch/insperhpc/thomas.rudge/aps_blocos/bloco5/resultados/nsys.sqlite from /scratch/insperhpc/thomas.rudge/aps_blocos/bloco5/resultados/nsys.nsys-rep
+Processing [/scratch/insperhpc/thomas.rudge/aps_blocos/bloco5/resultados/nsys.sqlite] with [/opt/nvidia/nsight-systems/2024.5.1/host-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls  Avg (ns)   Med (ns)  Min (ns)  Max (ns)  StdDev (ns)           Name         
+ --------  ---------------  ---------  ---------  --------  --------  --------  -----------  ----------------------
+     75.1      14420079348    1535435     9391.5    6865.0      3198   2140117       6585.8  cudaMemcpy            
+     24.5       4697128008    1535429     3059.2    3012.0      2546   2161426       4633.7  cudaLaunchKernel      
+      0.4         84585944         24  3524414.3    2480.0      1956  84516381   17251216.7  cudaMalloc            
+      0.0            12973          3     4324.3    2595.0      2409      7969       3157.7  cudaMemset            
+      0.0              671          1      671.0     671.0       671       671          0.0  cuModuleGetLoadingMode
+
+Processing [/scratch/insperhpc/thomas.rudge/aps_blocos/bloco5/resultados/nsys.sqlite] with [/opt/nvidia/nsight-systems/2024.5.1/host-linux-x64/reports/cuda_gpu_kern_sum.py]... 
+
+ ** CUDA GPU Kernel Summary (cuda_gpu_kern_sum):
+
+ Time (%)  Total Time (ns)  Instances  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)                                                  Name                                                
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ----------------------------------------------------------------------------------------------------
+     38.4       1022231258     418755    2441.1    2144.0      1631     14112        798.5  Barenn::forward_kernel(const float *, const float *, const float *, float *, float *, int, int, boo…
+     24.2        645327505     418752    1541.1    1536.0      1503     13952        105.4  Barenn::update_kernel(const float *, const float *, float *, float *, int, int, float)              
+     20.3        541787269     418753    1293.8    1280.0      1247     13952        140.6  Barenn::delta_kernel(const float *, const float *, float *, int, bool)                              
+     17.0        453689043     279169    1625.1    1727.0      1503      2208        112.3  Barenn::grad_in_kernel(const float *, const float *, float *, int, int)                             
+
+Processing [/scratch/insperhpc/thomas.rudge/aps_blocos/bloco5/resultados/nsys.sqlite] with [/opt/nvidia/nsight-systems/2024.5.1/host-linux-x64/reports/cuda_gpu_mem_time_sum.py]... 
+
+ ** CUDA GPU MemOps Summary (by Time) (cuda_gpu_mem_time_sum):
+
+ Time (%)  Total Time (ns)  Count   Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)           Operation          
+ --------  ---------------  ------  --------  --------  --------  --------  -----------  ----------------------------
+     50.2       1064651139  697924    1525.5    1504.0      1471      7584         52.0  [CUDA memcpy Device-to-Host]
+     49.8       1055582063  837511    1260.4    1248.0      1215      2560         28.6  [CUDA memcpy Host-to-Device]
+      0.0             3776       3    1258.7    1248.0      1248      1280         18.5  [CUDA memset]               
+
+Processing [/scratch/insperhpc/thomas.rudge/aps_blocos/bloco5/resultados/nsys.sqlite] with [/opt/nvidia/nsight-systems/2024.5.1/host-linux-x64/reports/cuda_gpu_mem_size_sum.py]... 
+
+ ** CUDA GPU MemOps Summary (by Size) (cuda_gpu_mem_size_sum):
+
+ Total (MB)  Count   Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)           Operation          
+ ----------  ------  --------  --------  --------  --------  -----------  ----------------------------
+     94.928  837511     0.000     0.000     0.000     0.008        0.000  [CUDA memcpy Host-to-Device]
+     59.184  697924     0.000     0.000     0.000     0.000        0.000  [CUDA memcpy Device-to-Host]
+      0.000       3     0.000     0.000     0.000     0.000        0.000  [CUDA memset]               
+
