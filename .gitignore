@@ -1,4 +1,7 @@
 /barenn
 /barenn_baseline
 /barenn_profile
+/barenn_cuda
 /build/
+*.nsys-rep
+*.sqlite
