@@ -1,0 +1,40 @@
+Generating SQLite file /scratch/insperhpc/thomas.rudge/aps_blocos/bloco7/resultados/nsys.sqlite from /scratch/insperhpc/thomas.rudge/aps_blocos/bloco7/resultados/nsys.nsys-rep
+Processing [/scratch/insperhpc/thomas.rudge/aps_blocos/bloco7/resultados/nsys.sqlite] with [/opt/nvidia/nsight-systems/2024.5.1/host-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls   Avg (ns)   Med (ns)  Min (ns)  Max (ns)   StdDev (ns)           Name         
+ --------  ---------------  ---------  ----------  --------  --------  ---------  -----------  ----------------------
+     84.4        452021015          7  64574430.7   93833.0     33931  451490617  170614011.7  cudaMemcpy            
+     15.5         83053330          7  11864761.4    4745.0      2946   83024636   31378555.3  cudaMalloc            
+      0.0           172037          2     86018.5   86018.5     27090     144947      83337.5  cudaLaunchKernel      
+      0.0           151888          7     21698.3    2961.0      2450     130950      48200.2  cudaFree              
+      0.0              694          1       694.0     694.0       694        694          0.0  cuModuleGetLoadingMode
+
+Processing [/scratch/insperhpc/thomas.rudge/aps_blocos/bloco7/resultados/nsys.sqlite] with [/opt/nvidia/nsight-systems/2024.5.1/host-linux-x64/reports/cuda_gpu_kern_sum.py]... 
+
+ ** CUDA GPU Kernel Summary (cuda_gpu_kern_sum):
+
+ Time (%)  Total Time (ns)  Instances   Avg (ns)     Med (ns)    Min (ns)   Max (ns)   StdDev (ns)                                          Name                                         
+ --------  ---------------  ---------  -----------  -----------  ---------  ---------  -----------  -------------------------------------------------------------------------------------
+    100.0        451472098          1  451472098.0  451472098.0  451472098  451472098          0.0  Barenn::treino_kernel(float *, const float *, const int *, int, int, float, double *)
+      0.0            20544          1      20544.0      20544.0      20544      20544          0.0  Barenn::avaliacao_kernel(const float *, const float *, int, float *)                 
+
+Processing [/scratch/insperhpc/thomas.rudge/aps_blocos/bloco7/resultados/nsys.sqlite] with [/opt/nvidia/nsight-systems/2024.5.1/host-linux-x64/reports/cuda_gpu_mem_time_sum.py]... 
+
+ ** CUDA GPU MemOps Summary (by Time) (cuda_gpu_mem_time_sum):
+
+ Time (%)  Total Time (ns)  Count  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)           Operation          
+ --------  ---------------  -----  --------  --------  --------  --------  -----------  ----------------------------
+     93.5           129248      5   25849.6    2656.0      1920     82144      35498.8  [CUDA memcpy Host-to-Device]
+      6.5             8928      2    4464.0    4464.0      2208      6720       3190.5  [CUDA memcpy Device-to-Host]
+
+Processing [/scratch/insperhpc/thomas.rudge/aps_blocos/bloco7/resultados/nsys.sqlite] with [/opt/nvidia/nsight-systems/2024.5.1/host-linux-x64/reports/cuda_gpu_mem_size_sum.py]... 
+
+ ** CUDA GPU MemOps Summary (by Size) (cuda_gpu_mem_size_sum):
+
+ Total (MB)  Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)           Operation          
+ ----------  -----  --------  --------  --------  --------  -----------  ----------------------------
+      1.473      5     0.295     0.015     0.007     0.979        0.429  [CUDA memcpy Host-to-Device]
+      0.072      2     0.036     0.036     0.000     0.072        0.051  [CUDA memcpy Device-to-Host]
+
