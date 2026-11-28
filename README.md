@@ -1,3 +1,70 @@
+# Barenn: resumo dos resultados
+
+Rede 64→32→16→10 treinada por SGD (uma amostra por passo) no optdigits. Otimizei em blocos, cada um com Issue, branch, PR e tag anotada. O enunciado original continua abaixo da linha.
+
+## Tabela consolidada
+
+Tempo de treino de 51 épocas, média ± desvio de 5 execuções. Speedup = tempo da v0.0 na mesma máquina / tempo da versão.
+
+| Versão | M4 Pro: treino | Speedup | Santos Dumont: treino | Speedup | Acurácia / perda |
+|:--|--:|--:|--:|--:|:--|
+| v0.0 baseline legado | 0.3414 s ± 0.0012 | 1.00× | 1.3039 s ± 0.0006 | 1.00× | 95.5% / 0.0432 |
+| v0.1 memória | 0.1664 s ± 0.0025 | 2.05× | 0.8220 s ± 0.0011 | 1.59× | 95.5% / 0.0432 |
+| v0.2 SIMD | 0.0828 s ± 0.0002 | 4.12× | 0.7416 s ± 0.0009 | 1.76× | 95.4% / 0.0447 |
+| v0.3 OpenMP | 0.0812 s ± 0.0005 | 4.20× | — | — | 95.4% / 0.0447 |
+| v0.4 CUDA inicial | — | — | 20.5284 s ± 0.1106 | 0.06× | 95.6% / 0.0438 |
+| v0.5 CUDA residente | — | — | 5.2691 s ± 0.0244 | 0.25× | 95.6% / 0.0438 |
+| v0.6 CUDA shared | — | — | 0.4601 s ± 0.0161 | 2.83× | 95.6% / 0.0438 |
+
+M4 Pro: Apple M4 Pro (8P+4E, 24 GB), macOS 27.2.1, Apple clang 21 com as flags do Makefile de cada tag (v0.0 e v0.1 `-O2`; v0.2 `-O3 -mcpu=native -fopenmp-simd`; v0.3 com OpenMP, libomp 23.1.6, 12 threads). Não tem GPU NVIDIA.
+
+Santos Dumont: nó sdumont8051 (job 11761660), 2× Xeon Gold 6252 e Tesla V100-SXM2-32GB. CPU com g++ 8.5 `-O2 -fopenmp` e 4 threads, GPU com CUDA 12.6 e `nvcc -O2 -arch=sm_70`. CPU e GPU rodaram no mesmo nó e no mesmo job, então a comparação entre elas vale: a v0.6 treina 1.6× mais rápido que a v0.2 (0.7416 s → 0.4601 s).
+
+A v0.3 não muda o treino, porque o SGD por amostra é serial. O ganho dela é no tempo total do processo (leitura paralela): 0.1143 s → 0.0916 s no M4. Por isso ela ficou fora do job do Santos Dumont. Colunas diferentes não se comparam: no M4 a CPU com `-O3` nativo treina em 0.08 s, mais rápido que a V100, que usa 1 bloco em 1 dos 80 SMs ([#13](https://github.com/thomasrudge/aps2-supercomp/issues/13)).
+
+## Índice
+
+| Bloco | Issue (diagnóstico, profiling e análise) | PR | Tag |
+|:-:|:--|:-:|:--|
+| 1 | [#1 Baseline: medição e profiling do código legado](https://github.com/thomasrudge/aps2-supercomp/issues/1) | [#2](https://github.com/thomasrudge/aps2-supercomp/pull/2) | [v0.0-baseline](https://github.com/thomasrudge/aps2-supercomp/releases/tag/v0.0-baseline) |
+| 2 | [#3 Memória: pesos contíguos, sem cópias e sem grad_in descartado](https://github.com/thomasrudge/aps2-supercomp/issues/3) | [#4](https://github.com/thomasrudge/aps2-supercomp/pull/4) | [v0.1-memoria](https://github.com/thomasrudge/aps2-supercomp/releases/tag/v0.1-memoria) |
+| 3 | [#5 SIMD: -O3 native, grad_in por linha e Forward vetorizado](https://github.com/thomasrudge/aps2-supercomp/issues/5) | [#6](https://github.com/thomasrudge/aps2-supercomp/pull/6) | [v0.2-simd](https://github.com/thomasrudge/aps2-supercomp/releases/tag/v0.2-simd) |
+| 4 | [#7 OpenMP: avaliação e leitura paralelas (SGD serial, Amdahl)](https://github.com/thomasrudge/aps2-supercomp/issues/7) | [#8](https://github.com/thomasrudge/aps2-supercomp/pull/8) | [v0.3-openmp](https://github.com/thomasrudge/aps2-supercomp/releases/tag/v0.3-openmp) |
+| 5 | [#9 CUDA inicial: porte dos laços para kernels](https://github.com/thomasrudge/aps2-supercomp/issues/9) | [#10](https://github.com/thomasrudge/aps2-supercomp/pull/10) | [v0.4-cuda-inicial](https://github.com/thomasrudge/aps2-supercomp/releases/tag/v0.4-cuda-inicial) |
+| 6 | [#11 CUDA residente: dados na GPU e sem cópias no laço](https://github.com/thomasrudge/aps2-supercomp/issues/11) | [#12](https://github.com/thomasrudge/aps2-supercomp/pull/12) | [v0.5-cuda-residente](https://github.com/thomasrudge/aps2-supercomp/releases/tag/v0.5-cuda-residente) |
+| 7 | [#13 CUDA shared: kernel único com pesos em shared memory](https://github.com/thomasrudge/aps2-supercomp/issues/13) | [#14](https://github.com/thomasrudge/aps2-supercomp/pull/14) | [v0.6-cuda-shared](https://github.com/thomasrudge/aps2-supercomp/releases/tag/v0.6-cuda-shared) |
+
+Os perfis brutos (callgrind e nsys) estão em [profiling/](profiling/).
+
+## Como reproduzir
+
+```bash
+# CPU. No macOS precisa da libomp (brew install libomp).
+make && ./bench.sh && ./validate.sh             # versão atual de CPU (v0.3)
+make baseline && ./bench.sh ./barenn_baseline   # código legado, extraído da tag v0.0-baseline
+make callgrind                                  # perfil de CPU (precisa de valgrind/Linux)
+
+# GPU, num nó com NVIDIA (compila para sm_70, a V100).
+make cuda && ./bench.sh ./barenn_cuda && ./validate.sh ./barenn_cuda
+make nsys                                       # perfil de GPU (Nsight Systems)
+```
+
+Para uma versão antiga: `git checkout <tag>` e os mesmos comandos (na v0.0 só existe `make baseline`).
+
+No Santos Dumont, o `sd_job.sh` mede todas as versões no mesmo nó (5 execuções, validação e nsys). Ele lê o fonte de cada tag de uma pasta:
+
+```bash
+mkdir -p sd/cpu sd/bloco5 sd/bloco6 sd/bloco7
+cp sd_job.sh optdigits.tra optdigits.tes referencia.txt sd/
+for t in v0.0-baseline v0.1-memoria v0.2-simd v0.3-openmp; do git show $t:barenn.cpp > sd/cpu/barenn_$t.cpp; done
+git show v0.4-cuda-inicial:barenn.cu   > sd/bloco5/barenn.cu
+git show v0.5-cuda-residente:barenn.cu > sd/bloco6/barenn.cu
+git show v0.6-cuda-shared:barenn.cu    > sd/bloco7/barenn.cu
+cd sd && sbatch sd_job.sh                       # tempos em sd/resumo_<job>.txt
+```
+
+---
+
 # Projeto Barenn: O Legado, a Sobrevivência e o Salto para a GPU
 
 Era uma segunda-feira aparentemente tranquila quando a demanda chegou à sua mesa. A liderança técnica se aproximou com um sorriso contido e soltou aquela frase clássica que faz qualquer engenheiro gelar por dentro:
