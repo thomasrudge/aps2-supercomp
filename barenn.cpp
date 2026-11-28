@@ -179,9 +179,20 @@ void avaliar(DenseLayer& l1, DenseLayer& l2, DenseLayer& l3,
     double perda_total = 0;
 
     // Só fazemos forward aqui. Os pesos ficam fixos.
+    // As imagens são independentes; cada thread usa uma cópia das camadas.
+    vector<vector<float>> todos_escores(teste.size());
+    #pragma omp parallel
+    {
+        DenseLayer c1 = l1, c2 = l2, c3 = l3;
+        #pragma omp for
+        for (size_t i = 0; i < teste.size(); ++i) {
+            todos_escores[i] = c3.Forward(c2.Forward(c1.Forward(teste[i].imagem)));
+        }
+    }
+
     for (size_t i = 0; i < teste.size(); ++i) {
         const auto& amostra = teste[i];
-        const auto& escores = l3.Forward(l2.Forward(l1.Forward(amostra.imagem)));
+        const auto& escores = todos_escores[i];
         // O índice do maior escore indica a classe prevista.
         int previsto = static_cast<int>(
             max_element(escores.begin(), escores.end()) - escores.begin());
